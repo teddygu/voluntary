@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from "react-native";
 import MapView from "react-native-maps";
-import { Marker } from 'react-native-maps';
+import { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
 import 'localstorage-polyfill'
 
@@ -63,8 +63,16 @@ const MapComponent = () => {
                 latitude: val.latitude,
                 longitude: val.longitude,
               }}
-              title={val.event_details.name}
-            />);
+            >
+            <Callout tooltip>
+              <View style={{backgroundColor: 'white', maxWidth: 200, maxHeight: 600, borderRadius: 25, padding: 20 }}>
+                <Text numberOfLines= {4} style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center',}}>{val.event_details.name}</Text>
+                <Text numberOfLines= {12} style={{textAlign: 'center', numberOfLines: 1}}>{val.event_details.description}</Text>
+              </View>
+            </Callout>
+            </Marker>
+
+            );
           });
           setMarkers(temp);
           //console.log(JSON.stringify(markers));
