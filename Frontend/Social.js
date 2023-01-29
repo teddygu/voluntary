@@ -41,34 +41,52 @@ class Social extends React.Component {
 
   render() {
     return (  
-    <View style={{borderWidth: 20, borderColor: 'lavender'}}>
-      <Appbar.Header style={{backgroundColor: 'lavender'}}>
-          <Appbar.Content title="Leaderboard" />
-          <Text style={{padding: 5}}>300</Text>
-          <Image source={require('./assets/kudos_icon.png')} style={{width: 30, height: 30}}/>
-      </Appbar.Header>
+    <View>
 
       <ScrollView>
-        <DataTable style={{borderBottomColor: 'lavender', borderBottomWidth: 173}}>
-          <DataTable.Header>
-            <DataTable.Title>Rank</DataTable.Title>
-            <DataTable.Title style={{left: 25}}>Username</DataTable.Title>
-            <DataTable.Title style={{left: 35}}>Points Earned</DataTable.Title>
-          </DataTable.Header>
+    <DataTable>
+      <DataTable.Header>
+        <DataTable.Title>Rank</DataTable.Title>
+        <DataTable.Title>Username</DataTable.Title>
+        <DataTable.Title numeric>Points Earned</DataTable.Title>
+      </DataTable.Header>
 
-          
-          {this.state.leaderboard.map((item, index) => (
-            <DataTable.Row key={index}>
-              <DataTable.Cell>{index+1}</DataTable.Cell>
-              <DataTable.Cell style={{left: 30}}>{item._id}</DataTable.Cell>
-              <DataTable.Cell numeric>{item.points}</DataTable.Cell>
-            </DataTable.Row>
-          ))}
-        </DataTable>
+      
+      {this.state.leaderboard.map((item, index) => (
+        <DataTable.Row key={index}>
+          <DataTable.Cell>{index+1}</DataTable.Cell>
+          <DataTable.Cell>{item._id}</DataTable.Cell>
+          <DataTable.Cell numeric>{item.points}</DataTable.Cell>
+        </DataTable.Row>
+      ))}
+        
+
+      </DataTable>
       </ScrollView>
     </View>
+    
     );
   }
+
+    // function Global() {
+    //     console.log("global");
+    
+    //     return (
+    //       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    //         <Text>Global</Text>
+    //       </View>
+    //     );
+    //   }
+    
+    // function Friends() {
+    //     console.log("friends");
+    
+    //     return (
+    //       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    //         <Text>Friends</Text>
+    //       </View>
+    //     );
+    //   }
 };
 
 export default Social;

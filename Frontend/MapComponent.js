@@ -70,9 +70,9 @@ const MapComponent = () => {
             >
             <Callout tooltip>
               <View style={{backgroundColor: 'white', maxWidth: 350, maxHeight: 600, borderRadius: 25, padding: 20 }}>
-                <Text numberOfLines= {4} style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center',}}>{val.event_details.name}</Text>
-                <Text numberOfLines= {12} style={{textAlign: 'center', numberOfLines: 1}}>{val.event_details.description}</Text>
-                <Text numberOfLines= {4} style={{textAlign: 'center', numberOfLines: 1, fontStyle: 'italic'}}>Worth {val.points_worth} Points{}</Text>
+                <Text numberOfLines= {4} style={{fontFamily: 'Verdana-Bold', fontWeight: 'bold', fontSize: 15, textAlign: 'center',}}>{val.event_details.name}</Text>
+                <Text numberOfLines= {12} style={{fontFamily: 'Verdana',textAlign: 'center', numberOfLines: 1}}>{val.event_details.description}</Text>
+                <Text numberOfLines= {4} style={{fontFamily: 'Verdana-BoldItalic',textAlign: 'center', numberOfLines: 1, fontStyle: 'italic'}}>Worth {val.points_worth} Points{}</Text>
               </View>
             </Callout>
             </Marker>
@@ -91,6 +91,8 @@ const MapComponent = () => {
   if (errorMsg) {
     text = errorMsg;
   }
+
+ 
 
   return (
     <View style={styles.container}>

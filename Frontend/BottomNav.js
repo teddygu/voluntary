@@ -5,6 +5,7 @@ import MapComponent from './MapComponent';
 import ProfileComponent from './ProfileComponent';
 import Rewards from './Rewards';
 import Social from './Social';
+import SocialBar from './SocialBar';
 
 const RewardRoute = () => <Rewards></Rewards>;
 
@@ -14,7 +15,7 @@ const HomeRoute = () => <HomeComponent></HomeComponent>;
 
 const ProfileRoute = () => <ProfileComponent></ProfileComponent>;
 
-const SocialRoute = () => <Social></Social>;
+const SocialRoute = () => <SocialBar></SocialBar>;
 
 
 const BottomNav = () => {
@@ -23,7 +24,7 @@ const BottomNav = () => {
     { key: 'home', title: 'Home', focusedIcon: 'home', unfocusedIcon: 'home-outline' },
     { key: 'map', title: 'Map', focusedIcon: 'map', unfocusedIcon: 'map-outline'},
     { key: 'rewards', title: 'Rewards', focusedIcon: 'store', unfocusedIcon: 'store-outline'},
-    { key: 'social', title: 'Leads', focusedIcon: 'account-group', unfocusedIcon: 'account-group-outline' },
+    { key: 'social', title: 'Social', focusedIcon: 'account-group', unfocusedIcon: 'account-group-outline' },
     { key: 'profile', title: 'Profile', focusedIcon: 'account-circle', unfocusedIcon: 'account-circle-outline' },
   ]);
 
