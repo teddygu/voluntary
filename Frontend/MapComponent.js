@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from "react-native";
 import MapView from "react-native-maps";
+import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
 
@@ -17,15 +18,26 @@ const MapComponent = () => {
         return;
       }
 
-      let position = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest, maximumAge: 10000});
+      let position = await Location.getCurrentPositionAsync({});
       setLocation(position);
     })();
   }, []);
 
-  let text = 'Waiting..';
+  let text = 'Waiting...';
   if (errorMsg) {
     text = errorMsg;
   }
+
+  let markers = this.state.volunteerLocations.map(volunteerLocation => (
+    <MapView.Marker
+      key={volunteerLocation.id}
+      coordinate={{
+        latitude: volunteerLocation.lat,
+        longitude: volunteerLocation.lng,
+      }}
+      title={volunteerLocation.title}
+    />
+  ));
 
   return (
     <View style={styles.container}>
@@ -43,7 +55,9 @@ const MapComponent = () => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-      />
+      >
+        {markers}
+      </MapView>
     }
     </View>
   );
