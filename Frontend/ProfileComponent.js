@@ -36,8 +36,8 @@ class ProfileComponent extends React.Component {
         method: 'GET',
         credentials: 'include'
       }).then(response => response.json()).then(data => {
-        this.setState({ events: data.event_data.past_event_data });
-        this.setState({ activityLength: data.event_data.past_event_data.length });
+        this.setState({ events: data.event_data.event_history });
+        this.setState({ activityLength: data.event_data.event_history.length });
         this.setState({ points: data.points });
       });
     });
@@ -68,7 +68,7 @@ class ProfileComponent extends React.Component {
                   <List.Accordion style={{width: 185}}>
                       { 
                           this.state.events.map((item) => (
-                              <List.Item description={item.event_id} />
+                              <List.Item description={item.name} key={item.event_id}/>
                           ))
                       }
                   </List.Accordion>
@@ -78,7 +78,7 @@ class ProfileComponent extends React.Component {
                   <List.Accordion style={{width: 185}}>
                       { 
                           arr2.map((item) => (
-                              <List.Item description={item} />
+                              <List.Item description={item} key={item}/>
                           ))
                       }
                   </List.Accordion> 

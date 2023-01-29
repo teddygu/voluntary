@@ -19,13 +19,23 @@ export default function LoginScreen({ navigation }, isLoggedIn) {
   console.log(HomeScreen)
 
   return (
-    <View>
-        <Appbar.Header>
-            <Appbar.BackAction onPress={() => {navigation.goBack()}} />
-        </Appbar.Header>
-      <Avatar.Image size={400} source={require('../LoginAssets/logo.png')}/>
-      <Text>Welcome back.</Text>
-      <TextInput
+    <View style={styles.container}>
+        <View>
+            <Appbar.Header style={styles.header}>
+                <Appbar.BackAction style={styles.header} onPress={() => {navigation.goBack()}} />
+            </Appbar.Header>
+        </View>
+        
+        <View style={styles.avatar}>
+            <Avatar.Image size={250} source={require('../LoginAssets/logo.png')}/>
+        </View>
+      
+      <View>
+            <Text style={styles.welcomeBack}>Welcome Back</Text>
+        </View>
+      
+      <View >
+            <TextInput
         label="Email"
         returnKeyType="next"
         value={email.value}
@@ -37,7 +47,10 @@ export default function LoginScreen({ navigation }, isLoggedIn) {
         textContentType="emailAddress"
         keyboardType="email-address"
       />
-      <TextInput
+        </View>
+      
+        <View style={styles.view}>
+            <TextInput
         label="Password"
         returnKeyType="done"
         value={password.value}
@@ -45,23 +58,74 @@ export default function LoginScreen({ navigation }, isLoggedIn) {
         error={!!password.error}
         errorText={password.error}
         secureTextEntry
-      />
-      <View>
-        <TouchableOpacity
+        />
+        </View>
+      
+      <View style={styles.view}>
+        <TouchableOpacity 
           onPress={() => navigation.navigate('ResetPasswordScreen')}
         >
-          <Text >Forgot your password?</Text>
+          <Text style={styles.title}>forgot your password?</Text>
         </TouchableOpacity>
       </View>
-      <Button mode="contained" onPress={()=> navigation.navigate('bottomNav')}>
+
+      <View style={styles.button}>
+           <Button mode="contained" onPress={()=> navigation.navigate('bottomNav')}>
         Login
-      </Button>
-      <View >
-        <Text>Don’t have an account? </Text>
+      </Button> 
+        </View>
+      
+      <View style={styles.view}>
+        <Text style={styles.description}>Don’t have an account? </Text>
         <TouchableOpacity onPress={() => navigation.replace('RegisterScreen')}>
-          <Text >Sign up</Text>
+          <Text style={styles.signUp}>Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+    header:{
+        color:'white',
+        fontColor:'white',
+        backgroundColor:'black'
+    },
+    container: {
+        height: '100%',
+        width: '100%',
+        backgroundColor:'black'
+    },
+    view: {
+        height:'7%'
+    },
+    welcomeBack:{
+        fontWeight: 'bold',
+        display: 'flex',
+        fontSize: '25',
+        color: 'white'
+    },
+    avatar:{
+        alignItems:"center",
+    },
+     title: {
+        fontWeight: 'bold',
+        display: 'flex',
+        fontSize: '20',
+        color: 'white'
+    },
+    signUp:{
+        fontSize:'16',
+        color: 'white',
+        fontWeight:'bold'
+    },
+    description: {
+        fontSize:'13',
+        color: 'white'
+    },
+    button: {
+        borderWidth:'1',
+        fontSize:'30'
+    }
+    
+    });

@@ -23,7 +23,7 @@ const BottomNav = () => {
     { key: 'rewards', title: 'Rewards', focusedIcon: 'store', unfocusedIcon: 'store-outline'},
     { key: 'map', title: 'Map', focusedIcon: 'map', unfocusedIcon: 'map-outline'},
     { key: 'home', title: 'Home', focusedIcon: 'home', unfocusedIcon: 'home-outline' },
-    { key: 'social', title: 'Social', focusedIcon: 'account-group', unfocusedIcon: 'account-group-outline' },
+    { key: 'social', title: 'Leads', focusedIcon: 'account-group', unfocusedIcon: 'account-group-outline' },
     { key: 'profile', title: 'Profile', focusedIcon: 'account-circle', unfocusedIcon: 'account-circle-outline' },
   ]);
 
