@@ -230,7 +230,7 @@ class Mongo:
                 'start_ts': user_data['event_data']['current_event_data']['start_ts'],
                 'end_ts': int(time.time())
             }}})
-            user_success_3 = self.db.users.update({'_id': username}, {'$inc': {'event_data.points': event_data['points_worth']}})
+            user_success_3 = self.db.users.update({'_id': username}, {'$inc': {'points': event_data['points_worth']}})
             event_success = self.db.events.update({'_id': event_id}, {'$pull': {'current_participants': username}})
             if user_success_1 and user_success_2 and user_success_3 and event_success:
                 return True, None
