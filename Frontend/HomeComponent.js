@@ -102,7 +102,7 @@ class HomeComponent extends React.Component {
               <Text style={{fontSize: 15, top: 30}}>Current Rank: {rank}</Text>
             </View>
             <View style={styles.progressBar}>
-              <View style={{top:0, height: 16, lexDirection: "row", width: 150, backgroundColor: 'lavender'}}/>
+              <View style={{top:0, height: 16, lexDirection: "row", width: 250 - diff, backgroundColor: 'lavender'}}/>
             </View>
             <View>
               <Text style={{fontSize: 15, top: 50}}>{msg}</Text>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
    progressBar: {
     height: 20,
     lexDirection: "row",
-    width: 300,
+    width: 250,
     backgroundColor: 'white',
     borderColor: '#000',
     borderWidth: 2,
