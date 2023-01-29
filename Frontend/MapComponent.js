@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import MapView from "react-native-maps";
 import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
-
+import 'localstorage-polyfill'
 
 const MapComponent = () => {
   const [location, setLocation] = useState(null);
@@ -22,8 +22,15 @@ const MapComponent = () => {
       let position = await Location.getCurrentPositionAsync({});
       setLocation(position);
 
-      fetch('https://mh-api.owl.moe/api/v1/user/login_dummy', {
+      localStorage.username = 'User2';
+      localStorage.password = 'somepw';
+
+      fetch('https://mh-api.owl.moe/api/v1/user/login', {
         method: 'POST',
+        body: JSON.stringify({
+          username: localStorage.username,
+          password: localStorage.password
+        }),
         headers: {
           'Content-Type': 'application/json'
         },
