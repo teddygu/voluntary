@@ -224,8 +224,9 @@ class Mongo:
             return False, 'User or event not found'
         if user_data['event_data']['current_event_data'].get('event_id') == event_id:
             user_success_1 = self.db.users.update({'_id': username}, {'$set': {'event_data.current_event_data': {}}})
-            user_success_2 = self.db.users.update({'_id': username}, {'$push': {'event_data.past_event_data': {
+            user_success_2 = self.db.users.update({'_id': username}, {'$push': {'event_data.event_history': {
                 'event_id': event_id,
+                'name': event_data['event_details']['name'],
                 'start_ts': user_data['event_data']['current_event_data']['start_ts'],
                 'end_ts': int(time.time())
             }}})
