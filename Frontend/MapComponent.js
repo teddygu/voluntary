@@ -22,8 +22,10 @@ const MapComponent = () => {
       let position = await Location.getCurrentPositionAsync({});
       setLocation(position);
 
-      localStorage.username = 'User2';
+      localStorage.username = 'User1';
       localStorage.password = 'somepw';
+
+
 
       fetch('https://mh-api.owl.moe/api/v1/user/login', {
         method: 'POST',
@@ -56,9 +58,11 @@ const MapComponent = () => {
           let temp = [];
           data.forEach(val => {
             //console.log(val);
-    
+            let icon = '';
+            if (val.is_participating) icon = require('./img/marker_green.png')
             temp.push(<Marker
               key={val.event_id}
+              icon={icon}
               coordinate={{
                 latitude: val.latitude,
                 longitude: val.longitude,
@@ -68,6 +72,7 @@ const MapComponent = () => {
               <View style={{backgroundColor: 'white', maxWidth: 350, maxHeight: 600, borderRadius: 25, padding: 20 }}>
                 <Text numberOfLines= {4} style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center',}}>{val.event_details.name}</Text>
                 <Text numberOfLines= {12} style={{textAlign: 'center', numberOfLines: 1}}>{val.event_details.description}</Text>
+                <Text numberOfLines= {4} style={{textAlign: 'center', numberOfLines: 1, fontStyle: 'italic'}}>Worth {val.points_worth} Points{}</Text>
               </View>
             </Callout>
             </Marker>
