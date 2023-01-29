@@ -27,7 +27,7 @@ class API:
         self.app.route('/api/v1/user/add_friend', methods=['POST'])(self.user_add_friend)
         self.app.route('/api/v1/user/remove_friend', methods=['POST'])(self.user_remove_friend)
 
-        self.app.route('/api/v1/event/get_nearby', methods=['GET'])(self.event_get_nearby)
+        self.app.route('/api/v1/event/get_nearby', methods=['POST'])(self.event_get_nearby)
         self.app.route('/api/v1/event/join', methods=['POST'])(self.event_join)
         self.app.route('/api/v1/event/leave', methods=['POST'])(self.event_leave)
 
