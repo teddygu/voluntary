@@ -4,11 +4,11 @@ import BottomNav from './BottomNav';
 import Login from './Login';
 
 export default function App() {
-  
+  var loggedIn = true;
   return (
     <PaperProvider>
-      {/* <Login></Login> */}
-      <BottomNav></BottomNav>
+      {!loggedIn && <Login />}
+      {loggedIn && <BottomNav />}
     </PaperProvider>
   );
 }

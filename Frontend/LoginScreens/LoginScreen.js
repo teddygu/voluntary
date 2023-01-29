@@ -5,7 +5,8 @@ import { TouchableOpacity, StyleSheet, View } from 'react-native'
 import { Text, TextInput, Avatar, Appbar, Button } from 'react-native-paper'
 import BottomNav from '../BottomNav';
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ navigation }, isLoggedIn) {
+     
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 
