@@ -144,6 +144,20 @@ class Mongo:
     def get_event_data(self, event_id):
         return self.db.events.find_one({'_id': event_id})
 
+    def get_event_info(self, event_id):
+        event_data = self.get_event_data(event_id)
+        if event_data is None:
+            return {}
+        return {
+            'event_id': event_data['_id'],
+            'latitude': event_data['latitude'],
+            'longitude': event_data['longitude'],
+            'organization_id': event_data['organization_id'],
+            'event_details': event_data['event_details'],
+            'participant_count': len(event_data['current_participants']),
+            'points_worth': event_data['points_worth']
+        }
+
     def get_events(self, latitude, longitude, radius=10):
         events = self.db.events.find()
         nearby_events = []
@@ -210,13 +224,15 @@ class Mongo:
             return False, 'User or event not found'
         if user_data['event_data']['current_event_data'].get('event_id') == event_id:
             user_success_1 = self.db.users.update({'_id': username}, {'$set': {'event_data.current_event_data': {}}})
-            user_success_2 = self.db.users.update({'_id': username}, {'$push': {'event_data.past_event_data': {
+            user_success_2 = self.db.users.update({'_id': username}, {'$push': {'event_data.event_history': {
                 'event_id': event_id,
+                'name': event_data['event_details']['name'],
                 'start_ts': user_data['event_data']['current_event_data']['start_ts'],
                 'end_ts': int(time.time())
             }}})
+            user_success_3 = self.db.users.update({'_id': username}, {'$inc': {'points': event_data['points_worth']}})
             event_success = self.db.events.update({'_id': event_id}, {'$pull': {'current_participants': username}})
-            if user_success_1 and user_success_2 and event_success:
+            if user_success_1 and user_success_2 and user_success_3 and event_success:
                 return True, None
         else:
             return False, 'You are not in any event'

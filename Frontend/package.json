@@ -16,6 +16,8 @@
     "expo": "~47.0.12",
     "expo-location": "~15.0.1",
     "expo-status-bar": "~1.4.2",
+    "jquery": "^3.6.3",
+    "localstorage-polyfill": "^1.0.1",
     "react": "18.1.0",
     "react-native": "^0.70.5",
     "react-native-maps": "1.3.2",

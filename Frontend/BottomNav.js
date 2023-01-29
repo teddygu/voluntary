@@ -4,6 +4,7 @@ import HomeComponent from './HomeComponent';
 import MapComponent from './MapComponent';
 import ProfileComponent from './ProfileComponent';
 import Rewards from './Rewards';
+import Social from './Social';
 
 const RewardRoute = () => <Rewards></Rewards>;
 
@@ -13,7 +14,7 @@ const HomeRoute = () => <HomeComponent></HomeComponent>;
 
 const ProfileRoute = () => <ProfileComponent></ProfileComponent>;
 
-const SocialRoute = () => <Text>Social</Text>;
+const SocialRoute = () => <Social></Social>;
 
 
 const BottomNav = () => {

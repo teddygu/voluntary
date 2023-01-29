@@ -30,6 +30,7 @@ class API:
         self.app.route('/api/v1/user/remove_friend', methods=['POST'])(self.user_remove_friend)
 
         self.app.route('/api/v1/event/get_nearby', methods=['POST'])(self.event_get_nearby)
+        self.app.route('/api/v1/event/get_info', methods=['POST'])(self.event_get_info)
         self.app.route('/api/v1/event/join', methods=['POST'])(self.event_join)
         self.app.route('/api/v1/event/leave', methods=['POST'])(self.event_leave)
 
@@ -105,6 +106,14 @@ class API:
             abort(401)
         username = session['username']
         data = self.mongo.get_events(latitude, longitude)
+        return jsonify(data)
+
+    def event_get_info(self):
+        event_id = request.json.get('event_id')
+        if 'username' not in session:
+            abort(401)
+        username = session['username']
+        data = self.mongo.get_event_info(event_id)
         return jsonify(data)
 
     def event_join(self):
