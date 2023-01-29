@@ -15,25 +15,25 @@ const HomeComponent = ({navigation}) => {
           <View style={styles.container}>
             <View style={{flex: 1, flexDirection: 'column', top: 40}}>
               <View>
-                <Text style={{fontWeight: 'bold', fontSize: 30, right: 50, fontStyle: 'italic'}}>Welcome back David!</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 30, textAlign: 'center'}}>Welcome back David!</Text>
               </View>
-              <View style={{top: 20}}>
+              <View style={{top: 20, alignItems: 'center'}}>
                   {path}
               </View>
               <View>
-                <Text style={{fontSize: 15, top: 30}}>Current Rank: Plat</Text>
+                <Text style={{fontSize: 15, textAlign: 'center', top: 30}}>Current Rank: Plat</Text>
               </View>
               <View style={styles.progressBar}>
                 <View style={{top:0, height: 16, lexDirection: "row", width: 150, backgroundColor: 'lavender'}}/>
               </View>
               <View>
-                <Text style={{fontSize: 15, top: 50}}>You're X points away from the next rank!</Text>
+                <Text style={{fontSize: 15, top: 50, textAlign: 'center'}}>You're X points away from the next rank!</Text>
               </View>
-              <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, right: 50, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+              <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, textAlign: 'center'}}>Top Events In Your Area</Text>
             </View>
             <StatusBar style="auto" />
             <View style={{flex: 1, flexDirection: 'row', top: 80}}>
-              <View style={{flex:1, alignItems:'center'}}>
+              <View style={{flex:1, textAlign: 'center'}}>
                   <View style={{width: 425}}>
                       { 
                           arr1.map((item, i) => (
