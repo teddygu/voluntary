@@ -9,33 +9,44 @@ const Stack = createNativeStackNavigator();
 
 
 
-const Social = ( { navigation }) => {
-    const [value, setValue] = React.useState('');
-    const [global, setGlobal] = React.useState(true);
-    
+class Social extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leaderboard: [],
+    }
+  }
+  
+  
+  componentDidMount() {
+    fetch('https://mh-api.owl.moe/api/v1/user/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: localStorage.username,
+        password: localStorage.password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    }).then(response => response.json()).then(data => {
+      fetch('https://mh-api.owl.moe/api/v1/stats/leaderboard', {
+        method: 'GET',
+        credentials: 'include'
+      }).then(response => response.json()).then(data => {
+        this.setState({ leaderboard: data });
+      });
+    });
+  }
+
+  render() {
     return (  
     <View>
         
         <Appbar.Header>
-            <Appbar.Content title="Social" />
+            <Appbar.Content title="Leaderboard" />
         </Appbar.Header>
-        
 
-        <SegmentedButtons
-        value={value}
-        onValueChange={setValue}
-        buttons={[
-          {
-            label: 'Global',
-            onPress: () => setGlobal(true)
-          },
-          {
-            label: 'Friends',
-            onPress: () => setGlobal(false)
-          }
-        ]}
-      />
-      {global && 
       <ScrollView>
     <DataTable>
       <DataTable.Header>
@@ -44,26 +55,22 @@ const Social = ( { navigation }) => {
         <DataTable.Title>Points Earned</DataTable.Title>
       </DataTable.Header>
 
-      <DataTable.Row>
-        <DataTable.Cell>1</DataTable.Cell>
-        <DataTable.Cell>llamakking</DataTable.Cell>
-        <DataTable.Cell numeric>6.0</DataTable.Cell>
-      </DataTable.Row>
+      
+      {this.state.leaderboard.map((item, index) => (
+        <DataTable.Row>
+          <DataTable.Cell>{index+1}</DataTable.Cell>
+          <DataTable.Cell>{item._id}</DataTable.Cell>
+          <DataTable.Cell numeric>{item.points}</DataTable.Cell>
+        </DataTable.Row>
+      ))}
+        
 
-      <DataTable.Row>
-        <DataTable.Cell>2</DataTable.Cell>
-        <DataTable.Cell>weijini</DataTable.Cell>
-        <DataTable.Cell numeric>8.0</DataTable.Cell>
-      </DataTable.Row>
       </DataTable>
       </ScrollView>
-      
-      }
-      {!global && 
-      <Text>Friends</Text>}
     </View>
     
     );
+  }
 
     // function Global() {
     //     console.log("global");
