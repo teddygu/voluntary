@@ -10,7 +10,7 @@ class Points:
         points = np.array([user['points'] for user in point_data])
         return np.percentile(points, percentile)
 
-    def get_rank_cutoffs(self, num_ranks):
+    def get_rank_cutoffs(self):
         cutoffs = [
             self.get_percentile(30),
             self.get_percentile(60),
