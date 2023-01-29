@@ -20,6 +20,8 @@ class HomeComponent extends React.Component {
     }
   }
 
+  
+
   componentDidMount() {
     fetch('https://mh-api.owl.moe/api/v1/user/login', {
       method: 'POST',
@@ -92,6 +94,9 @@ class HomeComponent extends React.Component {
       path = <Platinum/>
       rank = 'Platinum';
     }
+
+   
+
     return (
       <PaperProvider>
         <View style={styles.container}>
@@ -100,7 +105,7 @@ class HomeComponent extends React.Component {
           </View>
           <View style={{flex: 1, flexDirection: 'column', top: 0}}>
             <View>
-              <Text style={{fontWeight: 'bold', fontSize: 30, right: 0, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
+              <Text style={{fontFamily: 'Prompt_700Bold ', fontWeight: 'bold', fontSize: 30, right: 0, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
             </View>
             <View style={{top: 20, left: 50}}>
                 {path}
