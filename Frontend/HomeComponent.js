@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, StackNavigator, Text } from 'react-native';
-import { Provider as PaperProvider, Button, List, Banner } from 'react-native-paper';
+import { Provider as PaperProvider, Button, List, Banner, Appbar } from 'react-native-paper';
 import Platinum from './Plat.js';
 import Gold from './Gold.js';
 import Silver from './Silver.js';
@@ -97,7 +97,7 @@ class HomeComponent extends React.Component {
             <View>
               <Text style={{fontWeight: 'bold', fontSize: 30, right: 0, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
             </View>
-            <View style={{top: 20, left: 70}}>
+            <View style={{top: 20, left: 50}}>
                 {path}
             </View>
             <View>
@@ -109,8 +109,8 @@ class HomeComponent extends React.Component {
             <View>
               <Text style={{fontSize: 15, left: 30, top: 50}}>{msg}</Text>
             </View>
-            <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
-            <Text Text style={{top: 55, left: 50}}>(organization name + past participants)</Text>
+            <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+            <Text Text style={{top: 65, left: 50}}>(organization name + past participants)</Text>
           </View>
           <StatusBar style="auto" />
           <View style={{flex: 1, flexDirection: 'row', top: 95}}>
@@ -139,7 +139,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingTop: 50,
     borderWidth: 20,
-    borderColor: 'lavender'
+    borderColor: 'lavender',
+    headers: 'lavender',
+    borderTopWidth: 50
   },
    progressBar: {
     height: 20,

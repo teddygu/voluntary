@@ -52,15 +52,15 @@ class Social extends React.Component {
         <DataTable>
           <DataTable.Header>
             <DataTable.Title>Rank</DataTable.Title>
-            <DataTable.Title>Username</DataTable.Title>
-            <DataTable.Title>Points Earned</DataTable.Title>
+            <DataTable.Title style={{left: 25}}>Username</DataTable.Title>
+            <DataTable.Title style={{left: 35}}>Points Earned</DataTable.Title>
           </DataTable.Header>
 
           
           {this.state.leaderboard.map((item, index) => (
             <DataTable.Row key={index}>
               <DataTable.Cell>{index+1}</DataTable.Cell>
-              <DataTable.Cell>{item._id}</DataTable.Cell>
+              <DataTable.Cell style={{left: 30}}>{item._id}</DataTable.Cell>
               <DataTable.Cell numeric>{item.points}</DataTable.Cell>
             </DataTable.Row>
           ))}

@@ -49,7 +49,7 @@ class ProfileComponent extends React.Component {
 
 
   render() {
-    let arr2 = ['No rewards available'];
+    let arr2 = ['No previously purchased awards'];
     return (
       <PaperProvider>
         <View style={styles.container}>
@@ -111,7 +111,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingTop: 50,
     borderWidth: 20,
-    borderColor: 'lavender'
+    borderColor: 'lavender',
+    borderTopWidth: 50
   }
 });
 
