@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { Provider as PaperProvider, Button, List } from 'react-native-paper';
 import BottomNav from './BottomNav';
 
 export default function App() {
+  
   return (
     <PaperProvider>
       <BottomNav></BottomNav>
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    flexDirection: 'column',
+    paddingTop: 50
+  }
 });
