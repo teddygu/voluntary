@@ -46,17 +46,17 @@ class Social extends React.Component {
       <ScrollView>
     <DataTable>
       <DataTable.Header>
-        <DataTable.Title>Rank</DataTable.Title>
-        <DataTable.Title>Username</DataTable.Title>
-        <DataTable.Title numeric>Points Earned</DataTable.Title>
+        <DataTable.Title textStyle={{fontFamily: 'Verdana-Bold'}}>Rank</DataTable.Title>
+        <DataTable.Title textStyle={{fontFamily: 'Verdana-Bold'}}>Username</DataTable.Title>
+        <DataTable.Title textStyle={{fontFamily: 'Verdana-Bold'}} numeric>Points Earned</DataTable.Title>
       </DataTable.Header>
 
       
       {this.state.leaderboard.map((item, index) => (
         <DataTable.Row key={index}>
-          <DataTable.Cell>{index+1}</DataTable.Cell>
-          <DataTable.Cell>{item._id}</DataTable.Cell>
-          <DataTable.Cell numeric>{item.points}</DataTable.Cell>
+          <DataTable.Cell textStyle={{fontFamily: 'Verdana-Bold'}}>{index+1}</DataTable.Cell>
+          <DataTable.Cell textStyle={{fontFamily: 'Verdana'}}>{item._id}</DataTable.Cell>
+          <DataTable.Cell textStyle={{fontFamily: 'Verdana'}} numeric>{item.points}</DataTable.Cell>
         </DataTable.Row>
       ))}
         
