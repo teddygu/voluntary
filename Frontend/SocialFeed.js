@@ -5,28 +5,28 @@ import { List } from 'react-native-paper';
 const SocialFeed = () => (
   <ScrollView>
     <List.Item
-    title="Bob Smith"
+    title="BobSmith"
     description="earned 170 kudos volunteering at Minnehack 2023!"
   />
   <List.Item
-    title="First Item"
-    description="Item description"
+    title="joeyb_9"
+    description="earned 244 kudos volunteering at Touchstone Mental Health!"
   />
   <List.Item
-    title="First Item"
-    description="Item description"
+    title="patrickmahomes"
+    description="earned 199 kudos volunteering at Epilepsy Foundation of Minnesota!"
   />
   <List.Item
-    title="First Item"
-    description="Item description"
+    title="weijini"
+    description="earned 190 kudos volunteering at Bolder Options!"
   />
   <List.Item
-    title="First Item"
-    description="Item description"
+    title="jalenhurts"
+    description="earned 312 kudos volunteering at Longfellow/Seward Healthy Seniors!"
   />
   <List.Item
-    title="First Item"
-    description="Item description"
+    title="brock.purdy13"
+    description="earned 109 kudos volunteering at Project Success!"
   />
   </ScrollView>
   
