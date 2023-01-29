@@ -41,11 +41,10 @@ class Social extends React.Component {
 
   render() {
     return (  
-    <View>
-
+    <View style={{borderColor: 'lavender', headers: 'lavender', borderTopWidth: 50, borderWidth: 20}}>
       <ScrollView>
     <DataTable>
-      <DataTable.Header>
+      <DataTable.Header style={{backgroundColor: 'lavender'}}>
         <DataTable.Title>Rank</DataTable.Title>
         <DataTable.Title>Username</DataTable.Title>
         <DataTable.Title numeric>Points Earned</DataTable.Title>

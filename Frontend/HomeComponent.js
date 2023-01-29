@@ -112,22 +112,20 @@ class HomeComponent extends React.Component {
             <View>
               <Text style={{fontFamily: 'Verdana-Bold', fontWeight: 'bold', fontSize: 30, right: 0}}>Welcome back {this.state.name}!</Text>
             </View>
-            <View style={{top: 20, left: 50}}>
+            <View style={{top: 20, left: 70}}>
                 {path}
             </View>
             <View>
-              <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 100, top: 30}}>Current Rank: {rank}</Text>
+              <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 110, top: 30}}>Current Rank: {rank}</Text>
             </View>
             <View style={styles.progressBar}>
-              <View style={{top:0, height: 16, lexDirection: "row", width: 250 - diff, backgroundColor: 'lavender'}}/>
+              <View style={{top:0, height: 16, flexDirection: "row", width: 250 - diff, backgroundColor: 'lavender'}}/>
             </View>
             <View>
-              <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 30, top: 50}}>{msg}</Text>
+              <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 45, top: 50}}>{msg}</Text>
             </View>
-            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 60}}>Top Events In Your Area</Text>
-            <Text Text style={{fontFamily: 'Verdana',top: 65, left: 50}}>(organization name + past participants)</Text>
-            <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60}}>Top Events In Your Area</Text>
-            <Text Text style={{top: 65, left: 50}}>(organization name + current participants)</Text>
+            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 70}}>Top Events In Your Area</Text>
+            <Text Text style={{fontFamily: 'Verdana',top: 65, left: 60}}>(organization name + past participants)</Text>
           </View>
           <StatusBar style="auto" />
           <View style={{flex: 1, flexDirection: 'row', top: 65}}>
@@ -135,7 +133,7 @@ class HomeComponent extends React.Component {
                 <View style={{width: 425}}>
                     { 
                         this.state.activities.map((item, i) => (
-                          <List.Item style={{left: 50, top: 30}} description={i + 1 + '. ' + item.event_details.name + ' - ' + item.participant_count} />
+                          <List.Item style={{left: 30, top: 30}} description={i + 1 + '. ' + item.event_details.name + ' - ' + item.participant_count} />
                       ))
                     }
                 </View>
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 5,
     top: 45,
-    left: 50
+    left: 55
   }
 });
 
