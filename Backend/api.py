@@ -17,7 +17,8 @@ class API:
         )
         self.app.wsgi_app = ProxyFix(self.app.wsgi_app)
 
-        self
+        self.app.route('/')(self.index)
+
         self.app.route('/api/v1/user/create_account')(self.user_create_account)
         self.app.route('/api/v1/user/login')(self.user_login)
 
@@ -28,7 +29,10 @@ class API:
         self.app.route('/api/v1/event/get_nearby')(self.event_get_nearby)
         self.app.route('/api/v1/event/join')(self.event_join)
         self.app.route('/api/v1/event/leave')(self.event_leave)
-        
+
+    def index(self):
+        return 'Hi'
+
     def user_check_username_availability(self):
         username = request.json.get('username')
         is_available = self.mongo.is_username_available(username)
