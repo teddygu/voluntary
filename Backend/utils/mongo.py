@@ -158,7 +158,7 @@ class Mongo:
             'points_worth': event_data['points_worth']
         }
 
-    def get_events(self, latitude, longitude, radius=10):
+    def get_events(self, username, latitude, longitude, radius=10):
         events = self.db.events.find()
         nearby_events = []
         for event in events:
@@ -170,7 +170,8 @@ class Mongo:
                     'organization_id': event['organization_id'],
                     'event_details': event['event_details'],
                     'participant_count': len(event['current_participants']),
-                    'points_worth': event['points_worth']
+                    'points_worth': event['points_worth'],
+                    'is_participating': username in event['current_participants']
                 })
         return nearby_events
 
