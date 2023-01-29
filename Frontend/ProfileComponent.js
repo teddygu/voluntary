@@ -55,8 +55,8 @@ class ProfileComponent extends React.Component {
         <View style={styles.container}>
           <View>
             <Text></Text>
-            <Text style={{fontSize: 25, fontWeight: 'bold', textAlign: 'center'}}>{this.state.userData.first_name} {this.state.userData.last_name}</Text>
-            <Text style={{fontSize: 15, fontWeight: 'bold', textAlign: 'center'}}>{localStorage.username}</Text>
+            <Text style={{fontFamily: 'Verdana-Bold', fontSize: 25, fontWeight: 'bold', textAlign: 'center'}}>{this.state.userData.first_name} {this.state.userData.last_name}</Text>
+            <Text style={{fontFamily: 'Verdana', fontSize: 15, fontWeight: 'bold', textAlign: 'center'}}>{localStorage.username}</Text>
             <Text></Text>
           </View>
           <View>
@@ -64,19 +64,19 @@ class ProfileComponent extends React.Component {
           </View>
           <View style={{flex: 1, flexDirection: 'row', top: 40}}>
             <View style={{flex:1, alignItems:'center'}}>
-              <Text style={{fontWeight: 'bold', fontSize: 30}}>{this.state.activityLength}</Text>
-              <Text style={{fontSize: 20, left: 20}}>Completed Activities</Text>
+              <Text style={{fontFamily: 'Verdana-Bold',fontWeight: 'bold', fontSize: 30}}>{this.state.activityLength}</Text>
+              <Text style={{fontFamily: 'Verdana-Bold',fontSize: 20, left: 20}}>Completed Activities</Text>
             </View>         
 
             <View style={{flex:1, alignItems:'center'}}>
-              <Text style={{fontWeight: 'bold', fontSize: 30}}>{this.state.points}</Text>
-              <Text style={{fontSize: 20}}>Total Points</Text>
+              <Text style={{fontFamily: 'Verdana-Bold',fontWeight: 'bold', fontSize: 30}}>{this.state.points}</Text>
+              <Text style={{fontFamily: 'Verdana-Bold',fontSize: 20}}>Total Points</Text>
             </View>   
           </View>
           <View style={{flex: 1, flexDirection: 'row', bottom: 100}}>
               <View style={{flex:1, alignItems:'center'}}>
-                  <Text style={{fontSize: 20}}>Past Activities</Text>
-                  <View style={{width: 185, left: 25}}>
+                  <Text style={{fontFamily: 'Verdana-Bold',fontSize: 20}}>Past Activities</Text>
+                  <View style={{fontFamily: 'Verdana',width: 185, left: 25}}>
                       {
                           this.state.events.map((item) => (
                               <List.Item description={item.name} key={item.event_id}/>
@@ -85,7 +85,7 @@ class ProfileComponent extends React.Component {
                   </View>
               </View>
               <View style={{flex:1, alignItems:'center'}}>
-                  <Text style={{fontSize: 20, left: 15}}>Past Rewards</Text>
+                  <Text style={{fontFamily: 'Verdana-Bold',fontSize: 20, left: 15}}>Past Rewards</Text>
                   <View style={{width: 185, left: 30}}>
                       { 
                           arr2.map((item) => (

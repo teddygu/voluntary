@@ -100,22 +100,22 @@ class HomeComponent extends React.Component {
         <View style={styles.container}>
           <View style={{flex: 1, flexDirection: 'column', top: 40}}>
             <View>
-              <Text style={{fontFamily: 'Prompt_700Bold ', fontWeight: 'bold', fontSize: 30, right: 0, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
+              <Text style={{fontFamily: 'Verdana-Bold', fontWeight: 'bold', fontSize: 30, right: 0, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
             </View>
             <View style={{top: 20, left: 50}}>
                 {path}
             </View>
             <View>
-              <Text style={{fontSize: 15, left: 100, top: 30}}>Current Rank: {rank}</Text>
+              <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 100, top: 30}}>Current Rank: {rank}</Text>
             </View>
             <View style={styles.progressBar}>
               <View style={{top:0, height: 16, lexDirection: "row", width: 250 - diff, backgroundColor: 'lavender'}}/>
             </View>
             <View>
-              <Text style={{fontSize: 15, left: 30, top: 50}}>{msg}</Text>
+              <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 30, top: 50}}>{msg}</Text>
             </View>
-            <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
-            <Text Text style={{top: 65, left: 50}}>(organization name + past participants)</Text>
+            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+            <Text Text style={{fontFamily: 'Verdana',top: 65, left: 50}}>(organization name + past participants)</Text>
           </View>
           <StatusBar style="auto" />
           <View style={{flex: 1, flexDirection: 'row', top: 95}}>
