@@ -111,4 +111,4 @@ class API:
         return jsonify({'success': success, 'error': error})
 
     def start_server(self):
-        self.app.run(host='0.0.0.0', port=80, debug=False, threaded=True)
+        self.app.run(host='0.0.0.0', port=8999, debug=False, threaded=True)
