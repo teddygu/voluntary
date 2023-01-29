@@ -7,6 +7,7 @@ import * as Location from 'expo-location';
 
 const MapComponent = () => {
   const [location, setLocation] = useState(null);
+  const [markers, setMarkers] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
@@ -20,6 +21,50 @@ const MapComponent = () => {
 
       let position = await Location.getCurrentPositionAsync({});
       setLocation(position);
+
+      fetch('https://mh-api.owl.moe/api/v1/user/login_dummy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        //alert(JSON.stringify(data));
+      });
+
+      fetch('https://mh-api.owl.moe/api/v1/event/get_nearby', {
+        method: 'POST',
+        body: JSON.stringify({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        //alert(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
+        let temp = [];
+        data.forEach(val => {
+          //console.log(val);
+  
+          temp.push(<Marker
+            key={val.event_id}
+            coordinate={{
+              latitude: val.latitude,
+              longitude: val.longitude,
+            }}
+          />);
+        });
+        setMarkers(temp);
+        //console.log(JSON.stringify(markers));
+      });
+
     })();
   }, []);
 
@@ -28,24 +73,14 @@ const MapComponent = () => {
     text = errorMsg;
   }
 
-  let markers = this.state.volunteerLocations.map(volunteerLocation => (
-    <MapView.Marker
-      key={volunteerLocation.id}
-      coordinate={{
-        latitude: volunteerLocation.lat,
-        longitude: volunteerLocation.lng,
-      }}
-      title={volunteerLocation.title}
-    />
-  ));
-
   return (
     <View style={styles.container}>
     {/*Render our MapView*/}
-    {!location && 
+    {!location && !markers &&
     <Text>{text}</Text>
+
     }
-    {location &&
+    {location && markers &&
       <MapView
         style={styles.map}
         //specify our coordinates.
@@ -56,7 +91,8 @@ const MapComponent = () => {
           longitudeDelta: 0.0421,
         }}
       >
-        {markers}
+        {markers.map(marker => (marker
+        ))}
       </MapView>
     }
     </View>
