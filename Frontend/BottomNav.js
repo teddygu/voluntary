@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
+import MapComponent from './MapComponent';
 
 const RewardRoute = () => <Text>Rewards</Text>;
 
-const MapRoute = () => <Text>Map</Text>;
+const MapRoute = () => <MapComponent></MapComponent>;
 
 const HomeRoute = () => <Text>Home Page</Text>;
 
