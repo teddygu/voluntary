@@ -124,8 +124,10 @@ class HomeComponent extends React.Component {
             <View>
               <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 45, top: 50}}>{msg}</Text>
             </View>
-            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 70}}>Top Events In Your Area</Text>
-            <Text Text style={{fontFamily: 'Verdana',top: 65, left: 60}}>(organization name + past participants)</Text>
+            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 60}}>Top Events In Your Area</Text>
+            <Text Text style={{fontFamily: 'Verdana',top: 65, left: 50}}>(organization name + past participants)</Text>
+            <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60}}>Top Events In Your Area</Text>
+            <Text Text style={{top: 65, left: 50}}>(organization name + current participants)</Text>
           </View>
           <StatusBar style="auto" />
           <View style={{flex: 1, flexDirection: 'row', top: 65}}>
