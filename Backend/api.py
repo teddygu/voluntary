@@ -76,6 +76,7 @@ class API:
         returned_data = {
             'username': username,
             'points': data['points'],
+            'user_data': data['user_data'],
             'event_data': data['event_data'],
             'friends': data['friends']
         }
