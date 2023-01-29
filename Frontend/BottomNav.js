@@ -4,7 +4,6 @@ import HomeComponent from './HomeComponent';
 import MapComponent from './MapComponent';
 import ProfileComponent from './ProfileComponent';
 import Rewards from './Rewards';
-import Social from './Social';
 import SocialBar from './SocialBar';
 
 const RewardRoute = () => <Rewards></Rewards>;

@@ -4,12 +4,11 @@ import BottomNav from './BottomNav';
 import Login from './Login';
 import haversine from 'haversine-distance'
 import 'localstorage-polyfill';
-import { useFonts, Prompt_500Medium} from '@expo-google-fonts/prompt';
 
-export default function App() {
-  let [fontsLoaded] = useFonts({
-    Prompt_500Medium,
-  });
+export default function App({loggedIn}) {
+
+  localStorage.username = 'User1';
+  localStorage.password = 'somepw'
 
   fetch('https://mh-api.owl.moe/api/v1/user/login', {
     method: 'POST',
@@ -52,14 +51,8 @@ export default function App() {
     });
   });
 
-
-
-  var loggedIn = true;
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
+  var loggedIn = false;
+  Login();
   return (
     <PaperProvider>
       {!loggedIn && <Login />}
@@ -68,12 +61,3 @@ export default function App() {
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     flexDirection: 'column',
-//     paddingTop: 50
-//   }
-// });

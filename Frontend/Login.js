@@ -10,10 +10,11 @@ import {
   ResetPasswordScreen,
   Dashboard,
 } from './LoginScreens'
+import BottomNav from './BottomNav'
 
 const Stack = createStackNavigator()
 
-export default function App() {
+export default function Login() {
   return (
     <Provider >
       <NavigationContainer>
@@ -27,6 +28,7 @@ export default function App() {
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
           <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen name = 'NavBar' component={BottomNav}/>
           <Stack.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}

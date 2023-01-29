@@ -3,14 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { TouchableOpacity, StyleSheet, View } from 'react-native'
 import { Text, TextInput, Avatar, Appbar, Button } from 'react-native-paper'
-import BottomNav from '../BottomNav';
+import HomeRoute from '../BottomNav';
+import App from '../App'
 
 export default function LoginScreen({ navigation }) {
-  
-
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
-
 
   return (
     <View style={styles.container}>
@@ -64,7 +62,7 @@ export default function LoginScreen({ navigation }) {
       </View>
 
       <View style={styles.button}>
-           <Button mode="contained" onPress={()=> navigation.navigate('bottomNav')}>
+           <Button mode="contained" onPress={()=>navigation.replace('NavBar')}>
         Login
       </Button> 
         </View>
