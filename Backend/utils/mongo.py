@@ -7,7 +7,7 @@ import time
 
 class Mongo:
     def __init__(self):
-        mongo_url = 'mongodb+srv://minnehack2023:<password>@cluster0.jacnljd.mongodb.net/?retryWrites=true&w=majority'
+        mongo_url = 'mongodb+srv://minnehack2023:67yNmCtAUaes8uKx@cluster0.jacnljd.mongodb.net/?retryWrites=true&w=majority'
         client = MongoClient(mongo_url)
         self.db = client.minnehack2023
 
@@ -33,7 +33,7 @@ class Mongo:
                     'first_name': first_name,
                     'last_name': last_name,
                     'email': email,
-                }
+                },
                 'event_data': {
                     'current_event_data': {},
                     'event_history': [],
