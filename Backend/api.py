@@ -19,16 +19,17 @@ class API:
 
         self.app.route('/')(self.index)
 
-        self.app.route('/api/v1/user/create_account')(self.user_create_account)
-        self.app.route('/api/v1/user/login')(self.user_login)
+        self.app.route('/api/v1/user/check_username_availability', methods=['POST'])(self.user_check_username_availability)
+        self.app.route('/api/v1/user/create_account', methods=['POST'])(self.user_create_account)
+        self.app.route('/api/v1/user/login', methods=['POST'])(self.user_login)
 
-        self.app.route('/api/v1/user/get_data')(self.user_get_data)
-        self.app.route('/api/v1/user/add_friend')(self.user_add_friend)
-        self.app.route('/api/v1/user/remove_friend')(self.user_remove_friend)
+        self.app.route('/api/v1/user/get_data', methods=['GET'])(self.user_get_data)
+        self.app.route('/api/v1/user/add_friend', methods=['POST'])(self.user_add_friend)
+        self.app.route('/api/v1/user/remove_friend', methods=['POST'])(self.user_remove_friend)
 
-        self.app.route('/api/v1/event/get_nearby')(self.event_get_nearby)
-        self.app.route('/api/v1/event/join')(self.event_join)
-        self.app.route('/api/v1/event/leave')(self.event_leave)
+        self.app.route('/api/v1/event/get_nearby', methods=['GET'])(self.event_get_nearby)
+        self.app.route('/api/v1/event/join', methods=['POST'])(self.event_join)
+        self.app.route('/api/v1/event/leave', methods=['POST'])(self.event_leave)
 
     def index(self):
         return 'Hi'
