@@ -97,7 +97,7 @@ class HomeComponent extends React.Component {
       diff = 0;
     }
     else{
-      msg = "You are " + diff + " points away from you next rank.";
+      msg = diff + " points until the next rank! Go for it!";
     }
 
    
@@ -110,7 +110,7 @@ class HomeComponent extends React.Component {
           </View>
           <View style={{flex: 1, flexDirection: 'column', top: 0}}>
             <View>
-              <Text style={{fontFamily: 'Verdana-Bold', fontWeight: 'bold', fontSize: 30, right: 0, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
+              <Text style={{fontFamily: 'Verdana-Bold', fontWeight: 'bold', fontSize: 30, right: 0}}>Welcome back {this.state.name}!</Text>
             </View>
             <View style={{top: 20, left: 50}}>
                 {path}
@@ -124,9 +124,9 @@ class HomeComponent extends React.Component {
             <View>
               <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 30, top: 50}}>{msg}</Text>
             </View>
-            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 60}}>Top Events In Your Area</Text>
             <Text Text style={{fontFamily: 'Verdana',top: 65, left: 50}}>(organization name + past participants)</Text>
-            <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+            <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60}}>Top Events In Your Area</Text>
             <Text Text style={{top: 65, left: 50}}>(organization name + current participants)</Text>
           </View>
           <StatusBar style="auto" />
