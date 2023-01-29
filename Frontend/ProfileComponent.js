@@ -28,7 +28,7 @@ const ProfileComponent = () => {
             </View>
             <View style={{flex: 1, flexDirection: 'row', bottom: 100}}>
                 <View style={{flex:1, alignItems:'center'}}>
-                    <Text style={{fontSize: 20}}>Past Rewards</Text>
+                    <Text style={{fontSize: 20}}>Past Activities</Text>
                     <List.Accordion style={{width: 185}}>
                         { 
                             arr1.map((item) => (
