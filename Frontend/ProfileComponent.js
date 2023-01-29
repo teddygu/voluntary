@@ -36,8 +36,8 @@ class ProfileComponent extends React.Component {
         method: 'GET',
         credentials: 'include'
       }).then(response => response.json()).then(data => {
-        this.setState({ events: data.event_data.past_event_data });
-        this.setState({ activityLength: data.event_data.past_event_data.length });
+        this.setState({ events: data.event_data.event_history });
+        this.setState({ activityLength: data.event_data.event_history.length });
         this.setState({ points: data.points });
       });
     });
