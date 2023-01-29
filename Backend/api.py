@@ -41,9 +41,8 @@ class API:
 
     def user_create_account(self):
         username = request.json.get('username')
-        email = request.json.get('email')
         password = request.json.get('password')
-        success, error = self.mongo.create_account(username, email, password)
+        success, error = self.mongo.create_account(username, password)
         return jsonify({'success': success, 'error': error})
 
     def user_login(self):
@@ -61,7 +60,6 @@ class API:
         data = self.mongo.get_user_data(username)
         returned_data = {
             'username': data['username'],
-            'email': data['email'],
             'points': data['points'],
             'event_data': data['event_data'],
             'friends': data['friends']
