@@ -59,7 +59,7 @@ class API:
         username = session['username']
         data = self.mongo.get_user_data(username)
         returned_data = {
-            'username': data['username'],
+            'username': username,
             'points': data['points'],
             'event_data': data['event_data'],
             'friends': data['friends']
