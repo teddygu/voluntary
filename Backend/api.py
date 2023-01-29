@@ -48,7 +48,10 @@ class API:
     def user_create_account(self):
         username = request.json.get('username')
         password = request.json.get('password')
-        success, error = self.mongo.create_account(username, password)
+        email = request.json.get('email')
+        first_name = request.json.get('first_name')
+        last_name = request.json.get('last_name')
+        success, error = self.mongo.create_account(username, password, email, first_name, last_name)
         if success:
             session['username'] = username
         return jsonify({'success': success, 'error': error})

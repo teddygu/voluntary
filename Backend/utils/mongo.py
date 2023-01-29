@@ -7,7 +7,7 @@ import time
 
 class Mongo:
     def __init__(self):
-        mongo_url = 'mongodb+srv://minnehack2023:<password>@cluster0.jacnljd.mongodb.net/?retryWrites=true&w=majority'
+        mongo_url = 'mongodb+srv://minnehack2023:67yNmCtAUaes8uKx@cluster0.jacnljd.mongodb.net/?retryWrites=true&w=majority'
         client = MongoClient(mongo_url)
         self.db = client.minnehack2023
 
@@ -24,11 +24,16 @@ class Mongo:
     def is_username_available(self, username):
         return self.get_user_data(username) is None
 
-    def create_account(self, username, password):
+    def create_account(self, username, password, email=None, first_name=None, last_name=None):
         if self.is_username_available(username):
             success = self.db.users.update({'_id': username}, {'$set': {
                 'password_hash': argon2.hash(password + username),
                 'points': 0,
+                'user_data': {
+                    'first_name': first_name,
+                    'last_name': last_name,
+                    'email': email,
+                },
                 'event_data': {
                     'current_event_data': {},
                     'event_history': [],
