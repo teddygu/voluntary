@@ -3,8 +3,9 @@ import { BottomNavigation, Text } from 'react-native-paper';
 import HomeComponent from './HomeComponent';
 import MapComponent from './MapComponent';
 import ProfileComponent from './ProfileComponent';
+import Rewards from './Rewards';
 
-const RewardRoute = () => <Text>Rewards</Text>;
+const RewardRoute = () => <Rewards></Rewards>;
 
 const MapRoute = () => <MapComponent></MapComponent>;
 
