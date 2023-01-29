@@ -59,6 +59,7 @@ const MapComponent = () => {
               latitude: val.latitude,
               longitude: val.longitude,
             }}
+            title={val.event_details.name}
           />);
         });
         setMarkers(temp);
