@@ -9,12 +9,15 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/prompt": "^0.2.2",
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
     "@react-navigation/stack": "^6.3.11",
     "deprecated-react-native-prop-types": "^2.3.0",
     "expo": "~47.0.12",
+    "expo-font": "~11.0.1",
     "expo-location": "~15.0.1",
+    "expo-splash-screen": "^0.17.5",
     "expo-status-bar": "~1.4.2",
     "haversine-distance": "^1.2.1",
     "jquery": "^3.6.3",
