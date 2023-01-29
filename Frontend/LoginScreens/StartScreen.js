@@ -1,8 +1,17 @@
 import React from 'react'
-import {Text, Button, Avatar} from 'react-native-paper'
-import {StyleSheet, View} from 'react-native'
+import { Button, Avatar} from 'react-native-paper'
+import {StyleSheet, View, Text} from 'react-native'
+import { useFonts, Prompt_500Medium, Prompt_700Bold} from '@expo-google-fonts/prompt';
 
 export default function StartScreen({ navigation }) {
+  let [fontsLoaded] = useFonts({
+    Prompt_500Medium, Prompt_700Bold
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
         <View style={styles.container}>
             <View>
@@ -47,23 +56,26 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems:"center",
-        backgroundColor:'black'
+        backgroundColor:'black',
+        fontFamily:'Prompt_500Medium'
     },
     view: {
         height:'7%'
     },
      title: {
+        fontFamily:'Prompt_700Bold',
         fontWeight: 'bold',
         display: 'flex',
         fontSize: '45',
         color: 'white'
     },
     description: {
+        fontFamily:'Prompt_500Medium',
         color: 'white',
         fontSize: '15'
     },
     button: {
-        borderWidth:'1'
+      borderWidth:'1'
     }
     
     });

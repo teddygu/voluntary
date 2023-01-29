@@ -5,18 +5,12 @@ import { TouchableOpacity, StyleSheet, View } from 'react-native'
 import { Text, TextInput, Avatar, Appbar, Button } from 'react-native-paper'
 import BottomNav from '../BottomNav';
 
-export default function LoginScreen({ navigation }, isLoggedIn) {
-     
+export default function LoginScreen({ navigation }) {
+  
+
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 
-  const Stack = createNativeStackNavigator();
-  const HomeScreen = () => (
-    <Stack.Navigator>
-        <Stack.Screen name='bottomNav' component={BottomNav} />
-      </Stack.Navigator>
-  )
-  console.log(HomeScreen)
 
   return (
     <View style={styles.container}>
