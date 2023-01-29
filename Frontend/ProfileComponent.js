@@ -1,23 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
+import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Provider as PaperProvider, Button, List, Avatar } from 'react-native-paper';
-import ImagesExample from './sample-img.js';
+import { Provider as PaperProvider, Button, List, Avatar, DataTable } from 'react-native-paper';
 
-const ProfileComponent = ({navigation}) => {
+const ProfileComponent = () => {
   //read in stuff
+    const [expanded, setExpanded] = React.useState(true);
+    const handlePress = () => setExpanded(!expanded);
     return (
         <PaperProvider>
           <View style={styles.container}>
             <View>
-                <Avatar.Text size={50} backgroundColor='lavender' label="XD"/>
+                <Avatar.Text size={150} backgroundColor='lavender' label="XD"/>
             </View>
             <View style={{flex: 1, flexDirection: 'row', top: 40}}>
               <View style={{flex:1, alignItems:'center'}}>
-                <Text>Num Points</Text>
-              </View>
+                <Text style={{fontWeight: 'bold', fontSize: 30}}>500</Text>
+                <Text style={{fontSize: 20}}>Completed Activities</Text>
+              </View>         
               <View style={{flex:1, alignItems:'center'}}>
-                <Text>Num Activities</Text>
-              </View> 
+                <Text style={{fontWeight: 'bold', fontSize: 30}}>500</Text>
+                <Text style={{fontSize: 20}}>Total Points</Text>
+              </View>   
+            </View>
+            <View style={{flex: 1, flexDirection: 'row', bottom: 100}}>
+                <View style={{flex:1, alignItems:'center'}}>
+                    <Text style={{fontSize: 20}}>Past Rewards</Text>
+                    <List.Accordion style={{width: 185}}>
+                        <List.Item title="First item" />
+                        <List.Item title="Second item" />
+                    </List.Accordion>
+                </View>
+                <View style={{flex:1, alignItems:'center'}}>
+                    <Text style={{fontSize: 20}}>Past Rewards</Text>
+                    <List.Accordion style={{width: 185}}>
+                        <List.Item title="First item" />
+                        <List.Item title="Second item" />
+                    </List.Accordion> 
+                </View>
             </View>
             <StatusBar style="auto" />
           </View>
