@@ -49,7 +49,7 @@ class ProfileComponent extends React.Component {
 
 
   render() {
-    let arr2 = ['No rewards available'];
+    let arr2 = ['No previously purchased awards'];
     return (
       <PaperProvider>
         <View style={styles.container}>
@@ -65,9 +65,9 @@ class ProfileComponent extends React.Component {
           <View style={{flex: 1, flexDirection: 'row', top: 40}}>
             <View style={{flex:1, alignItems:'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 30}}>{this.state.activityLength}</Text>
-              <Text style={{fontSize: 20}}>Completed Activities</Text>
+              <Text style={{fontSize: 20, left: 20}}>Completed Activities</Text>
             </View>         
-            
+
             <View style={{flex:1, alignItems:'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 30}}>{this.state.points}</Text>
               <Text style={{fontSize: 20}}>Total Points</Text>
@@ -76,25 +76,23 @@ class ProfileComponent extends React.Component {
           <View style={{flex: 1, flexDirection: 'row', bottom: 100}}>
               <View style={{flex:1, alignItems:'center'}}>
                   <Text style={{fontSize: 20}}>Past Activities</Text>
-                  <List.Accordion style={{width: 185}} expanded>
+                  <View style={{width: 185, left: 25}}>
                       {
                           this.state.events.map((item) => (
-
-
                               <List.Item description={item.name} key={item.event_id}/>
                           ))
                       }
-                  </List.Accordion>
+                  </View>
               </View>
               <View style={{flex:1, alignItems:'center'}}>
-                  <Text style={{fontSize: 20}}>Past Rewards</Text>
-                  <List.Accordion style={{width: 185}} expanded>
+                  <Text style={{fontSize: 20, left: 15}}>Past Rewards</Text>
+                  <View style={{width: 185, left: 30}}>
                       { 
                           arr2.map((item) => (
                               <List.Item description={item} key={item}/>
                           ))
                       }
-                  </List.Accordion> 
+                  </View> 
               </View>
           </View>
           <StatusBar style="auto" />
@@ -111,7 +109,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: 50
+    paddingTop: 50,
+    borderWidth: 20,
+    borderColor: 'lavender',
+    borderTopWidth: 50
   }
 });
 

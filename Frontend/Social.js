@@ -41,34 +41,32 @@ class Social extends React.Component {
 
   render() {
     return (  
-    <View>
-        
-        <Appbar.Header>
-            <Appbar.Content title="Leaderboard" />
-        </Appbar.Header>
+    <View style={{borderWidth: 20, borderColor: 'lavender'}}>
+      <Appbar.Header style={{backgroundColor: 'lavender'}}>
+          <Appbar.Content title="Leaderboard" />
+          <Text style={{padding: 5}}>5,607</Text>
+          <Image source={require('./assets/kudos_icon.png')} style={{width: 30, height: 30}}/>
+      </Appbar.Header>
 
       <ScrollView>
-    <DataTable>
-      <DataTable.Header>
-        <DataTable.Title>Rank</DataTable.Title>
-        <DataTable.Title>Username</DataTable.Title>
-        <DataTable.Title>Points Earned</DataTable.Title>
-      </DataTable.Header>
+        <DataTable>
+          <DataTable.Header>
+            <DataTable.Title>Rank</DataTable.Title>
+            <DataTable.Title style={{left: 25}}>Username</DataTable.Title>
+            <DataTable.Title style={{left: 35}}>Points Earned</DataTable.Title>
+          </DataTable.Header>
 
-      
-      {this.state.leaderboard.map((item, index) => (
-        <DataTable.Row key={index}>
-          <DataTable.Cell>{index+1}</DataTable.Cell>
-          <DataTable.Cell>{item._id}</DataTable.Cell>
-          <DataTable.Cell numeric>{item.points}</DataTable.Cell>
-        </DataTable.Row>
-      ))}
-        
-
-      </DataTable>
+          
+          {this.state.leaderboard.map((item, index) => (
+            <DataTable.Row key={index}>
+              <DataTable.Cell>{index+1}</DataTable.Cell>
+              <DataTable.Cell style={{left: 30}}>{item._id}</DataTable.Cell>
+              <DataTable.Cell numeric>{item.points}</DataTable.Cell>
+            </DataTable.Row>
+          ))}
+        </DataTable>
       </ScrollView>
     </View>
-    
     );
   }
 

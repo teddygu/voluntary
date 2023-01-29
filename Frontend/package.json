@@ -19,6 +19,7 @@
     "expo-location": "~15.0.1",
     "expo-splash-screen": "^0.17.5",
     "expo-status-bar": "~1.4.2",
+    "haversine-distance": "^1.2.1",
     "jquery": "^3.6.3",
     "localstorage-polyfill": "^1.0.1",
     "react": "18.1.0",
