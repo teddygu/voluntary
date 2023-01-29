@@ -73,17 +73,6 @@ class ProfileComponent extends React.Component {
           </View>
           <View style={{flex: 1, flexDirection: 'row', top: 40, backgroundColor: '#fff'}}>
             <View style={{flex:1, alignItems:'center'}}>
-<<<<<<< HEAD
-              <Text style={{fontWeight: 'bold', fontSize: 30}}>{this.state.activityLength}</Text>
-              <Text style={{fontSize: 20, left: 20}}>Completed Activities</Text>
-            </View>        
-
-
-            <View style={{flex:1, alignItems:'center',}}>
-              <Text style={{fontWeight: 'bold', fontSize: 30}}>{this.state.points}</Text>
-              <Text style={{fontSize: 20}}>Total Points</Text>
-            </View>  
-=======
               <Text style={{fontFamily: 'Verdana-Bold',fontWeight: 'bold', fontSize: 30}}>{this.state.activityLength}</Text>
               <Text style={{fontFamily: 'Verdana-Bold',fontSize: 20, left: 20}}>Completed Activities</Text>
             </View>         
@@ -92,17 +81,11 @@ class ProfileComponent extends React.Component {
               <Text style={{fontFamily: 'Verdana-Bold',fontWeight: 'bold', fontSize: 30}}>{this.state.points}</Text>
               <Text style={{fontFamily: 'Verdana-Bold',fontSize: 20}}>Total Points</Text>
             </View>   
->>>>>>> 72e0b69e12035fd2749f25f7543f89e9792877c7
           </View>
           <View style={{flex: 1, flexDirection: 'row', bottom: 100,}}>
               <View style={{flex:1, alignItems:'center'}}>
-<<<<<<< HEAD
-                  <Text style={{fontSize: 20}}>Past Activities</Text>
-                  <View style={{width: 190, left: 3, top: 7, backgroundColor: '#fff'}}>
-=======
                   <Text style={{fontFamily: 'Verdana-Bold',fontSize: 20}}>Past Activities</Text>
                   <View style={{fontFamily: 'Verdana',width: 185, left: 25}}>
->>>>>>> 72e0b69e12035fd2749f25f7543f89e9792877c7
                       {
                           this.state.events.map((item) => (
                               <List.Item description={item.name} key={item.event_id}/>
@@ -110,21 +93,6 @@ class ProfileComponent extends React.Component {
                       }
                   </View>
               </View>
-<<<<<<< HEAD
-              <View style={{flex:1, alignItems:'center',backgroundColor: '#fff'}}>
-                  <Text style={{fontSize: 20, 
-                     backgroundColor: '#fff'}}>Past Rewards</Text>
-                  <View style={{width: 150, left: 8, top:36, backgroundColor: '#fff',}}>
-                        <Text>
-                          No Purchased Awards
-                        </Text>
-                  </View>
-                  <View style={{width: 185, left: 1, top: 38,  backgroundColor: '#fff'}}>
-                        <Text style={[styles.setColorWhite,styles.setFontSize]}>
-                        Beep
-                        </Text>
-                  </View>  
-=======
               <View style={{flex:1, alignItems:'center'}}>
                   <Text style={{fontFamily: 'Verdana-Bold',fontSize: 20, left: 15}}>Past Rewards</Text>
                   <View style={{width: 185, left: 30}}>
@@ -134,7 +102,6 @@ class ProfileComponent extends React.Component {
                           ))
                       }
                   </View> 
->>>>>>> 72e0b69e12035fd2749f25f7543f89e9792877c7
               </View>
           </View>
           <StatusBar style="auto" />
