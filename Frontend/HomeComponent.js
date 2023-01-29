@@ -15,6 +15,7 @@ class HomeComponent extends React.Component {
     this.state = {
       name: "",
       points: 0,
+      activities: []
     }
   }
 
@@ -38,6 +39,22 @@ class HomeComponent extends React.Component {
         this.setState({ points: data.points });
       });
     });
+
+    fetch('https://mh-api.owl.moe/api/v1/event/get_nearby', {
+      method: 'POST',
+      body: JSON.stringify({
+        latitude: 44.970636,
+        longitude: -93.223282
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    }).then(response => response.json()).then(data => {
+      data.sort((a, b) => (a.participant_count > b.participant_count) ? 1 : -1);
+      var activity = [data[0], data[1], data[2]]
+      this.setState({ activities: activity})
+    });
   }
   
   render(){
@@ -48,6 +65,7 @@ class HomeComponent extends React.Component {
     // points = data.points;
     var diff = 250 - points % 250;
     var msg;
+    console.log(this.state.activities);
     if(points >= 750){
       msg = "Congratulations, you are the highest rank!"
     }
@@ -97,7 +115,9 @@ class HomeComponent extends React.Component {
             <View style={{flex:1, alignItems:'center'}}>
                 <View style={{width: 425}}>
                     { 
-                        
+                        this.state.activities.map((item) => (
+                          <List.Item description={item.event_details.name + ' - ' + item.points_worth} />
+                      ))
                     }
                 </View>
             </View>
