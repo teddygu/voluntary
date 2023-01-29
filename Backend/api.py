@@ -107,6 +107,14 @@ class API:
         data = self.mongo.get_events(latitude, longitude)
         return jsonify(data)
 
+    def event_get_info(self):
+        event_id = request.json.get('event_id')
+        if 'username' not in session:
+            abort(401)
+        username = session['username']
+        data = self.mongo.get_event_info(event_id)
+        return jsonify(data)
+
     def event_join(self):
         latitude = float(request.json.get('latitude'))
         longitude = float(request.json.get('longitude'))
