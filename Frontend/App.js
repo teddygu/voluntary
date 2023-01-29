@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { Provider as PaperProvider, Button, List } from 'react-native-paper';
-import ImagesExample from './sample-img.js'
+import ImagesExample from './sample-img.js';
+import BottomNav from './BottomNav';
 
 export default function App() {
   
@@ -34,6 +35,7 @@ export default function App() {
         </View>
         <StatusBar style="auto" />
       </View>
+      <BottomNav></BottomNav>
     </PaperProvider>
   );
 }

@@ -1,3 +1,7 @@
 flask
 flask-cors
-pymongo
+pymongo==3.12.3
+dnspython
+passlib
+argon2_cffi
+haversine
