@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import MapView from "react-native-maps";
 import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
-
+import 'localstorage-polyfill'
 
 const MapComponent = () => {
   const [location, setLocation] = useState(null);
@@ -22,23 +22,14 @@ const MapComponent = () => {
       let position = await Location.getCurrentPositionAsync({});
       setLocation(position);
 
-      fetch('https://mh-api.owl.moe/api/v1/user/login_dummy', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include'
-      })
-      .then(response => response.json())
-      .then(data => {
-        //alert(JSON.stringify(data));
-      });
+      localStorage.username = 'User2';
+      localStorage.password = 'somepw';
 
-      fetch('https://mh-api.owl.moe/api/v1/event/get_nearby', {
+      fetch('https://mh-api.owl.moe/api/v1/user/login', {
         method: 'POST',
         body: JSON.stringify({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
+          username: localStorage.username,
+          password: localStorage.password
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -47,22 +38,37 @@ const MapComponent = () => {
       })
       .then(response => response.json())
       .then(data => {
-        //alert(JSON.stringify(data));
-        //console.log(JSON.stringify(data));
-        let temp = [];
-        data.forEach(val => {
-          //console.log(val);
-  
-          temp.push(<Marker
-            key={val.event_id}
-            coordinate={{
-              latitude: val.latitude,
-              longitude: val.longitude,
-            }}
-          />);
+        fetch('https://mh-api.owl.moe/api/v1/event/get_nearby', {
+          method: 'POST',
+          body: JSON.stringify({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(data => {
+          //alert(JSON.stringify(data));
+          //console.log(JSON.stringify(data));
+          let temp = [];
+          data.forEach(val => {
+            //console.log(val);
+    
+            temp.push(<Marker
+              key={val.event_id}
+              coordinate={{
+                latitude: val.latitude,
+                longitude: val.longitude,
+              }}
+              title={val.event_details.name}
+            />);
+          });
+          setMarkers(temp);
+          //console.log(JSON.stringify(markers));
         });
-        setMarkers(temp);
-        //console.log(JSON.stringify(markers));
       });
 
     })();
