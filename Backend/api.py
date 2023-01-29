@@ -105,7 +105,7 @@ class API:
         if 'username' not in session:
             abort(401)
         username = session['username']
-        data = self.mongo.get_events(latitude, longitude)
+        data = self.mongo.get_events(username, latitude, longitude)
         return jsonify(data)
 
     def event_get_info(self):

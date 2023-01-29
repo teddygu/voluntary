@@ -20,9 +20,9 @@ const SocialRoute = () => <Social></Social>;
 const BottomNav = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'rewards', title: 'Rewards', focusedIcon: 'store', unfocusedIcon: 'store-outline'},
-    { key: 'map', title: 'Map', focusedIcon: 'map', unfocusedIcon: 'map-outline'},
     { key: 'home', title: 'Home', focusedIcon: 'home', unfocusedIcon: 'home-outline' },
+    { key: 'map', title: 'Map', focusedIcon: 'map', unfocusedIcon: 'map-outline'},
+    { key: 'rewards', title: 'Rewards', focusedIcon: 'store', unfocusedIcon: 'store-outline'},
     { key: 'social', title: 'Leads', focusedIcon: 'account-group', unfocusedIcon: 'account-group-outline' },
     { key: 'profile', title: 'Profile', focusedIcon: 'account-circle', unfocusedIcon: 'account-circle-outline' },
   ]);
