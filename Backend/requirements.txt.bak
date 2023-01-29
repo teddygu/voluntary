@@ -1,2 +1,6 @@
 flask
 flask-cors
+pymongo
+dnspython
+passlib
+argon2_cffi
