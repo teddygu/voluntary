@@ -45,6 +45,8 @@ class Social extends React.Component {
         
         <Appbar.Header>
             <Appbar.Content title="Leaderboard" />
+            <Text style={{padding: 5}}>5,607</Text>
+            <Image source={require('./assets/kudos_icon.png')} style={{width: 30, height: 30}}/>
         </Appbar.Header>
 
       <ScrollView>
