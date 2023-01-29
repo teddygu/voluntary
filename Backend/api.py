@@ -74,6 +74,15 @@ class API:
             abort(401)
         username = session['username']
         data = self.mongo.get_user_data(username)
+        new_past = []
+        past_event_data = data['event_data']['past_event_data']
+        for event in past_event_data:
+            info = self.mongo.get_event_info(event['event_id'])
+            if info:
+                new_event = dict(event)
+                new_event['name'] = info['event_details']['name']
+                new_past.append(new_event)
+        data['event_data']['past_event_data'] = new_past
         returned_data = {
             'username': username,
             'points': data['points'],
