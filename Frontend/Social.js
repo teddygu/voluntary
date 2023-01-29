@@ -57,7 +57,7 @@ class Social extends React.Component {
 
       
       {this.state.leaderboard.map((item, index) => (
-        <DataTable.Row>
+        <DataTable.Row key={index}>
           <DataTable.Cell>{index+1}</DataTable.Cell>
           <DataTable.Cell>{item._id}</DataTable.Cell>
           <DataTable.Cell numeric>{item.points}</DataTable.Cell>
