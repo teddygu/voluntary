@@ -67,6 +67,7 @@ class ProfileComponent extends React.Component {
               <Text style={{fontWeight: 'bold', fontSize: 30}}>{this.state.activityLength}</Text>
               <Text style={{fontSize: 20}}>Completed Activities</Text>
             </View>         
+            
             <View style={{flex:1, alignItems:'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 30}}>{this.state.points}</Text>
               <Text style={{fontSize: 20}}>Total Points</Text>
@@ -78,6 +79,8 @@ class ProfileComponent extends React.Component {
                   <List.Accordion style={{width: 185}} expanded>
                       {
                           this.state.events.map((item) => (
+
+
                               <List.Item description={item.name} key={item.event_id}/>
                           ))
                       }

@@ -51,7 +51,7 @@ class HomeComponent extends React.Component {
       },
       credentials: 'include'
     }).then(response => response.json()).then(data => {
-      data.sort((a, b) => (a.participant_count > b.participant_count) ? 1 : -1);
+      data.sort((a, b) => (a.participant_count > b.participant_count) ? -1 : 1);
       var activity = [data[0], data[1], data[2]]
       this.setState({ activities: activity})
     });
@@ -65,7 +65,6 @@ class HomeComponent extends React.Component {
     // points = data.points;
     var diff = 250 - points % 250;
     var msg;
-    console.log(this.state.activities);
     if(points >= 750){
       msg = "Congratulations, you are the highest rank!"
     }
@@ -94,7 +93,7 @@ class HomeComponent extends React.Component {
         <View style={styles.container}>
           <View style={{flex: 1, flexDirection: 'column', top: 40}}>
             <View>
-              <Text style={{fontWeight: 'bold', fontSize: 30, right: 50, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
+              <Text style={{fontWeight: 'bold', fontSize: 30, right: 30, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
             </View>
             <View style={{top: 20}}>
                 {path}
@@ -108,15 +107,15 @@ class HomeComponent extends React.Component {
             <View>
               <Text style={{fontSize: 15, top: 50}}>{msg}</Text>
             </View>
-            <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, right: 50, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+            <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, right: 30, fontStyle: 'italic'}}>Top Events In Your Area</Text>
           </View>
           <StatusBar style="auto" />
           <View style={{flex: 1, flexDirection: 'row', top: 80}}>
             <View style={{flex:1, alignItems:'center'}}>
                 <View style={{width: 425}}>
                     { 
-                        this.state.activities.map((item) => (
-                          <List.Item description={item.event_details.name + ' - ' + item.points_worth} />
+                        this.state.activities.map((item, i) => (
+                          <List.Item style={{left: 40, top: 30}} description={i + 1 + '. ' + item.event_details.name + ' - ' + item.participant_count} />
                       ))
                     }
                 </View>
