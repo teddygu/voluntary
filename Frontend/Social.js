@@ -41,34 +41,30 @@ class Social extends React.Component {
 
   render() {
     return (  
-    <View>
-        
-        <Appbar.Header>
-            <Appbar.Content title="Leaderboard" />
-        </Appbar.Header>
+    <View style={{borderWidth: 20, borderColor: 'lavender'}}>
+      <Appbar.Header style={{backgroundColor: 'lavender'}}>
+          <Appbar.Content title="Leaderboard" />
+      </Appbar.Header>
 
       <ScrollView>
-    <DataTable>
-      <DataTable.Header>
-        <DataTable.Title>Rank</DataTable.Title>
-        <DataTable.Title>Username</DataTable.Title>
-        <DataTable.Title>Points Earned</DataTable.Title>
-      </DataTable.Header>
+        <DataTable>
+          <DataTable.Header>
+            <DataTable.Title>Rank</DataTable.Title>
+            <DataTable.Title>Username</DataTable.Title>
+            <DataTable.Title>Points Earned</DataTable.Title>
+          </DataTable.Header>
 
-      
-      {this.state.leaderboard.map((item, index) => (
-        <DataTable.Row key={index}>
-          <DataTable.Cell>{index+1}</DataTable.Cell>
-          <DataTable.Cell>{item._id}</DataTable.Cell>
-          <DataTable.Cell numeric>{item.points}</DataTable.Cell>
-        </DataTable.Row>
-      ))}
-        
-
-      </DataTable>
+          
+          {this.state.leaderboard.map((item, index) => (
+            <DataTable.Row key={index}>
+              <DataTable.Cell>{index+1}</DataTable.Cell>
+              <DataTable.Cell>{item._id}</DataTable.Cell>
+              <DataTable.Cell numeric>{item.points}</DataTable.Cell>
+            </DataTable.Row>
+          ))}
+        </DataTable>
       </ScrollView>
     </View>
-    
     );
   }
 

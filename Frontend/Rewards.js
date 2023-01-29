@@ -3,10 +3,10 @@ import {View, ScrollView} from 'react-native'
 import { Appbar, Divider, Card, Text } from 'react-native-paper';
 
 const Rewards = () => (
-    <View>
-        <Appbar.Header>
-                <Appbar.Content title="Rewards" />
-            </Appbar.Header>
+    <View style={{borderWidth: 20, borderColor: 'lavender'}}>
+        <Appbar.Header style={{backgroundColor: 'lavender'}}>
+            <Appbar.Content title="Rewards" />
+        </Appbar.Header>
         <ScrollView>
             <Card>
                 <Card.Cover source={{ uri: 'https://m.media-amazon.com/images/G/01/gc/designs/livepreview/a_generic_white_10_us_noto_email_v2016_us-main._CB627448186_.png' }} />

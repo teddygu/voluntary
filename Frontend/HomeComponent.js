@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, StackNavigator, Text } from 'react-native';
-import { Provider as PaperProvider, Button, List } from 'react-native-paper';
+import { Provider as PaperProvider, Button, List, Banner } from 'react-native-paper';
 import Platinum from './Plat.js';
 import Gold from './Gold.js';
 import Silver from './Silver.js';
@@ -61,6 +61,8 @@ class HomeComponent extends React.Component {
     var points = this.state.points;
     var path;
     var rank;
+    var left = 50;
+    var right = 90
     // fName = data.user_data.first_name;
     // points = data.points;
     var diff = 250 - points % 250;
@@ -93,29 +95,30 @@ class HomeComponent extends React.Component {
         <View style={styles.container}>
           <View style={{flex: 1, flexDirection: 'column', top: 40}}>
             <View>
-              <Text style={{fontWeight: 'bold', fontSize: 30, right: 30, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
+              <Text style={{fontWeight: 'bold', fontSize: 30, right: 0, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
             </View>
-            <View style={{top: 20}}>
+            <View style={{top: 20, left: 70}}>
                 {path}
             </View>
             <View>
-              <Text style={{fontSize: 15, top: 30}}>Current Rank: {rank}</Text>
+              <Text style={{fontSize: 15, left: 100, top: 30}}>Current Rank: {rank}</Text>
             </View>
             <View style={styles.progressBar}>
               <View style={{top:0, height: 16, lexDirection: "row", width: 250 - diff, backgroundColor: 'lavender'}}/>
             </View>
             <View>
-              <Text style={{fontSize: 15, top: 50}}>{msg}</Text>
+              <Text style={{fontSize: 15, left: 30, top: 50}}>{msg}</Text>
             </View>
-            <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, right: 30, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+            <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+            <Text Text style={{top: 55, left: 50}}>(organization name + past participants)</Text>
           </View>
           <StatusBar style="auto" />
-          <View style={{flex: 1, flexDirection: 'row', top: 80}}>
+          <View style={{flex: 1, flexDirection: 'row', top: 95}}>
             <View style={{flex:1, alignItems:'center'}}>
                 <View style={{width: 425}}>
                     { 
                         this.state.activities.map((item, i) => (
-                          <List.Item style={{left: 40, top: 30}} description={i + 1 + '. ' + item.event_details.name + ' - ' + item.participant_count} />
+                          <List.Item style={{left: 50, top: 30}} description={i + 1 + '. ' + item.event_details.name + ' - ' + item.participant_count} />
                       ))
                     }
                 </View>
@@ -134,7 +137,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: 50
+    paddingTop: 50,
+    borderWidth: 20,
+    borderColor: 'lavender'
   },
    progressBar: {
     height: 20,
@@ -144,7 +149,8 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     borderWidth: 2,
     borderRadius: 5,
-    top: 45
+    top: 45,
+    left: 50
   }
 });
 
