@@ -224,13 +224,15 @@ class Mongo:
             return False, 'User or event not found'
         if user_data['event_data']['current_event_data'].get('event_id') == event_id:
             user_success_1 = self.db.users.update({'_id': username}, {'$set': {'event_data.current_event_data': {}}})
-            user_success_2 = self.db.users.update({'_id': username}, {'$push': {'event_data.past_event_data': {
+            user_success_2 = self.db.users.update({'_id': username}, {'$push': {'event_data.event_history': {
                 'event_id': event_id,
+                'name': event_data['event_details']['name'],
                 'start_ts': user_data['event_data']['current_event_data']['start_ts'],
                 'end_ts': int(time.time())
             }}})
+            user_success_3 = self.db.users.update({'_id': username}, {'$inc': {'points': event_data['points_worth']}})
             event_success = self.db.events.update({'_id': event_id}, {'$pull': {'current_participants': username}})
-            if user_success_1 and user_success_2 and event_success:
+            if user_success_1 and user_success_2 and user_success_3 and event_success:
                 return True, None
         else:
             return False, 'You are not in any event'
