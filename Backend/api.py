@@ -17,18 +17,23 @@ class API:
         )
         self.app.wsgi_app = ProxyFix(self.app.wsgi_app)
 
-        self
-        self.app.route('/api/v1/user/create_account')(self.user_create_account)
-        self.app.route('/api/v1/user/login')(self.user_login)
+        self.app.route('/')(self.index)
 
-        self.app.route('/api/v1/user/get_data')(self.user_get_data)
-        self.app.route('/api/v1/user/add_friend')(self.user_add_friend)
-        self.app.route('/api/v1/user/remove_friend')(self.user_remove_friend)
+        self.app.route('/api/v1/user/check_username_availability', methods=['POST'])(self.user_check_username_availability)
+        self.app.route('/api/v1/user/create_account', methods=['POST'])(self.user_create_account)
+        self.app.route('/api/v1/user/login', methods=['POST'])(self.user_login)
 
-        self.app.route('/api/v1/event/get_nearby')(self.event_get_nearby)
-        self.app.route('/api/v1/event/join')(self.event_join)
-        self.app.route('/api/v1/event/leave')(self.event_leave)
-        
+        self.app.route('/api/v1/user/get_data', methods=['GET'])(self.user_get_data)
+        self.app.route('/api/v1/user/add_friend', methods=['POST'])(self.user_add_friend)
+        self.app.route('/api/v1/user/remove_friend', methods=['POST'])(self.user_remove_friend)
+
+        self.app.route('/api/v1/event/get_nearby', methods=['GET'])(self.event_get_nearby)
+        self.app.route('/api/v1/event/join', methods=['POST'])(self.event_join)
+        self.app.route('/api/v1/event/leave', methods=['POST'])(self.event_leave)
+
+    def index(self):
+        return 'Hi'
+
     def user_check_username_availability(self):
         username = request.json.get('username')
         is_available = self.mongo.is_username_available(username)
@@ -36,9 +41,8 @@ class API:
 
     def user_create_account(self):
         username = request.json.get('username')
-        email = request.json.get('email')
         password = request.json.get('password')
-        success, error = self.mongo.create_account(username, email, password)
+        success, error = self.mongo.create_account(username, password)
         return jsonify({'success': success, 'error': error})
 
     def user_login(self):
@@ -55,8 +59,7 @@ class API:
         username = session['username']
         data = self.mongo.get_user_data(username)
         returned_data = {
-            'username': data['username'],
-            'email': data['email'],
+            'username': username,
             'points': data['points'],
             'event_data': data['event_data'],
             'friends': data['friends']
@@ -107,4 +110,4 @@ class API:
         return jsonify({'success': success, 'error': error})
 
     def start_server(self):
-        self.app.run(host='0.0.0.0', port=80, debug=False, threaded=True)
+        self.app.run(host='0.0.0.0', port=8999, debug=False, threaded=True)
