@@ -49,7 +49,7 @@ class Social extends React.Component {
       </Appbar.Header>
 
       <ScrollView>
-        <DataTable>
+        <DataTable style={{borderBottomColor: 'lavender', borderBottomWidth: 173}}>
           <DataTable.Header>
             <DataTable.Title>Rank</DataTable.Title>
             <DataTable.Title style={{left: 25}}>Username</DataTable.Title>
@@ -69,26 +69,6 @@ class Social extends React.Component {
     </View>
     );
   }
-
-    // function Global() {
-    //     console.log("global");
-    
-    //     return (
-    //       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    //         <Text>Global</Text>
-    //       </View>
-    //     );
-    //   }
-    
-    // function Friends() {
-    //     console.log("friends");
-    
-    //     return (
-    //       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    //         <Text>Friends</Text>
-    //       </View>
-    //     );
-    //   }
 };
 
 export default Social;
