@@ -68,7 +68,7 @@ class ProfileComponent extends React.Component {
                   <List.Accordion style={{width: 185}}>
                       { 
                           this.state.events.map((item) => (
-                              <List.Item description={item.name} />
+                              <List.Item description={item.name} key={item.event_id}/>
                           ))
                       }
                   </List.Accordion>
@@ -78,7 +78,7 @@ class ProfileComponent extends React.Component {
                   <List.Accordion style={{width: 185}}>
                       { 
                           arr2.map((item) => (
-                              <List.Item description={item} />
+                              <List.Item description={item} key={item}/>
                           ))
                       }
                   </List.Accordion> 
