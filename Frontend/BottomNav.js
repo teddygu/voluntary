@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
+import HomeComponent from './HomeComponent';
 import MapComponent from './MapComponent';
 
 const RewardRoute = () => <Text>Rewards</Text>;
 
 const MapRoute = () => <MapComponent></MapComponent>;
 
-const HomeRoute = () => <Text>Home Page</Text>;
+const HomeRoute = () => <HomeComponent></HomeComponent>;
 
 const ProfileRoute = () => <Text>Profile</Text>;
 
