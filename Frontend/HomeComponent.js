@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Provider as PaperProvider, Button, List } from 'react-native-paper';
 import ImagesExample from './sample-img.js';
+import Constants from 'expo-constants';
 
 const HomeComponent = () => {
+  //read in stuff
     return (
         <PaperProvider>
           <View style={styles.container}>
@@ -26,6 +28,9 @@ const HomeComponent = () => {
               <View>
                 <ImagesExample/>
               </View>
+              <View style={styles.progressBar}>
+                <View style={{height: 20, lexDirection: "row", width: 150, backgroundColor: 'green'}}/>
+              </View>
               <View>
                 <Text>You're X points away from the next rank!</Text>
               </View>
@@ -44,6 +49,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     paddingTop: 50
+  },
+   progressBar: {
+    height: 20,
+    lexDirection: "row",
+    width: 300,
+    backgroundColor: 'white',
+    borderColor: '#000',
+    borderWidth: 2,
+    borderRadius: 5
   }
 });
 
