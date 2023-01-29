@@ -69,30 +69,35 @@ class HomeComponent extends React.Component {
     var right = 90
     // fName = data.user_data.first_name;
     // points = data.points;
-    var diff = 2500 - points % 2500;
+    var diff;
     var msg;
-    if(points >= 7500){
-      msg = "Congratulations, you are the highest rank!"
-    }
-    else{
-      msg = "You are " + diff + " points away from you next rank.";
-    }
 
-    if(points < 2500){
+    if(points < 250){
       path = <Bronze/>;
       rank = 'Bronze';
+      diff = 250 - points;
     }
-    else if(points < 5000){
+    else if(points < 500){
       path = <Silver/>;
       rank = 'Silver';
+      diff = 500 - points;
     }
-    else if(points < 7500){
+    else if(points < 750){
       path = <Gold/>;
       rank = 'Gold';
+      diff = 750 - points;
     }
     else{
       path = <Platinum/>
       rank = 'Platinum';
+    }
+
+    if(points >= 750){
+      msg = "Congratulations, you are the highest rank!"
+      diff = 0;
+    }
+    else{
+      msg = "You are " + diff + " points away from you next rank.";
     }
 
    
@@ -114,13 +119,13 @@ class HomeComponent extends React.Component {
               <Text style={{fontSize: 15, left: 100, top: 30}}>Current Rank: {rank}</Text>
             </View>
             <View style={styles.progressBar}>
-              <View style={{top:0, height: 16, lexDirection: "row", width: 2500 - diff, backgroundColor: 'lavender'}}/>
+              <View style={{top:0, height: 16, lexDirection: "row", width: 250 - diff, backgroundColor: 'lavender'}}/>
             </View>
             <View>
               <Text style={{fontSize: 15, left: 30, top: 50}}>{msg}</Text>
             </View>
             <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
-            <Text Text style={{top: 65, left: 50}}>(organization name + past participants)</Text>
+            <Text Text style={{top: 65, left: 50}}>(organization name + current participants)</Text>
           </View>
           <StatusBar style="auto" />
           <View style={{flex: 1, flexDirection: 'row', top: 65}}>

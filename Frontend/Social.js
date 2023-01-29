@@ -44,7 +44,7 @@ class Social extends React.Component {
     <View style={{borderWidth: 20, borderColor: 'lavender'}}>
       <Appbar.Header style={{backgroundColor: 'lavender'}}>
           <Appbar.Content title="Leaderboard" />
-          <Text style={{padding: 5}}>5,607</Text>
+          <Text style={{padding: 5}}>300</Text>
           <Image source={require('./assets/kudos_icon.png')} style={{width: 30, height: 30}}/>
       </Appbar.Header>
 
