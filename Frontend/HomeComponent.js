@@ -5,47 +5,107 @@ import Platinum from './Plat.js';
 import Gold from './Gold.js';
 import Silver from './Silver.js';
 import Bronze from './Bronze.js';
+import React, {useState, useEffect} from "react"
 
-const HomeComponent = ({navigation}) => {
+
+class HomeComponent extends React.Component {
   //read in stuff
-    var path = <Bronze/>;
-    const arr1 = ["abc - 10/10/10 - 123 st", "def - 10/10/10 - 123 st", "ghi - 10/10/10 - 123 st"];
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      points: 0,
+    }
+  }
+
+  componentDidMount() {
+    fetch('https://mh-api.owl.moe/api/v1/user/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: localStorage.username,
+        password: localStorage.password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    }).then(response => response.json()).then(data => {
+      fetch('https://mh-api.owl.moe/api/v1/user/get_data', {
+        method: 'GET',
+        credentials: 'include'
+      }).then(response => response.json()).then(data => {
+        this.setState({ name: data.user_data.first_name });
+        this.setState({ points: data.points });
+      });
+    });
+  }
+  
+  render(){
+    var points = this.state.points;
+    var path;
+    var rank;
+    // fName = data.user_data.first_name;
+    // points = data.points;
+    var diff = 250 - points % 250;
+    var msg;
+    if(points >= 750){
+      msg = "Congratulations, you are the highest rank!"
+    }
+    else{
+      msg = "You are " + diff + " points away from you next rank.";
+    }
+
+    if(points < 250){
+      path = <Bronze/>;
+      rank = 'Bronze';
+    }
+    else if(points < 500){
+      path = <Silver/>;
+      rank = 'Silver';
+    }
+    else if(points < 750){
+      path = <Gold/>;
+      rank = 'Gold';
+    }
+    else{
+      path = <Platinum/>
+      rank = 'Platinum';
+    }
     return (
-        <PaperProvider>
-          <View style={styles.container}>
-            <View style={{flex: 1, flexDirection: 'column', top: 40}}>
-              <View>
-                <Text style={{fontWeight: 'bold', fontSize: 30, right: 50, fontStyle: 'italic'}}>Welcome back David!</Text>
-              </View>
-              <View style={{top: 20}}>
-                  {path}
-              </View>
-              <View>
-                <Text style={{fontSize: 15, top: 30}}>Current Rank: Plat</Text>
-              </View>
-              <View style={styles.progressBar}>
-                <View style={{top:0, height: 16, lexDirection: "row", width: 150, backgroundColor: 'lavender'}}/>
-              </View>
-              <View>
-                <Text style={{fontSize: 15, top: 50}}>You're X points away from the next rank!</Text>
-              </View>
-              <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, right: 50, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+      <PaperProvider>
+        <View style={styles.container}>
+          <View style={{flex: 1, flexDirection: 'column', top: 40}}>
+            <View>
+              <Text style={{fontWeight: 'bold', fontSize: 30, right: 50, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
             </View>
-            <StatusBar style="auto" />
-            <View style={{flex: 1, flexDirection: 'row', top: 80}}>
-              <View style={{flex:1, alignItems:'center'}}>
-                  <View style={{width: 425}}>
-                      { 
-                          arr1.map((item, i) => (
-                              <List.Item description={i + 1 + ". " + item} />
-                          ))
-                      }
-                  </View>
-              </View>
+            <View style={{top: 20}}>
+                {path}
+            </View>
+            <View>
+              <Text style={{fontSize: 15, top: 30}}>Current Rank: {rank}</Text>
+            </View>
+            <View style={styles.progressBar}>
+              <View style={{top:0, height: 16, lexDirection: "row", width: 150, backgroundColor: 'lavender'}}/>
+            </View>
+            <View>
+              <Text style={{fontSize: 15, top: 50}}>{msg}</Text>
+            </View>
+            <Text Text style={{fontWeight: 'bold', top: 60, fontSize: 20, right: 50, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+          </View>
+          <StatusBar style="auto" />
+          <View style={{flex: 1, flexDirection: 'row', top: 80}}>
+            <View style={{flex:1, alignItems:'center'}}>
+                <View style={{width: 425}}>
+                    { 
+                        
+                    }
+                </View>
             </View>
           </View>
-        </PaperProvider>
-      );
+        </View>
+      </PaperProvider>
+    );
+  }
 }
 
 
