@@ -4,9 +4,9 @@ from flask_cors import CORS
 from datetime import timedelta
 
 class API:
-    def __init__(self, mongo, auth):
+    def __init__(self, mongo, points):
         self.mongo = mongo
-        self.auth = auth
+        self.points = points
 
         self.app = Flask(__name__)
         self.app.config['SECRET_KEY'] = '05c305798441e57c5d599f7f2a0b0bf1'
@@ -27,9 +27,13 @@ class API:
         self.app.route('/api/v1/user/add_friend', methods=['POST'])(self.user_add_friend)
         self.app.route('/api/v1/user/remove_friend', methods=['POST'])(self.user_remove_friend)
 
-        self.app.route('/api/v1/event/get_nearby', methods=['GET'])(self.event_get_nearby)
+        self.app.route('/api/v1/event/get_nearby', methods=['POST'])(self.event_get_nearby)
         self.app.route('/api/v1/event/join', methods=['POST'])(self.event_join)
         self.app.route('/api/v1/event/leave', methods=['POST'])(self.event_leave)
+
+        self.app.route('/api/v1/stats/leaderboard', methods=['GET'])(self.stats_leaderboard)
+        self.app.route('/api/v1/stats/ranks', methods=['GET'])(self.stats_rank_cutoffs)
+
 
     def index(self):
         return 'Hi'
@@ -64,7 +68,7 @@ class API:
             'event_data': data['event_data'],
             'friends': data['friends']
         }
-        return jsonify(data)
+        return jsonify(returned_data)
 
     def user_add_friend(self):
         friend_username = request.json.get('friend_username')
@@ -108,6 +112,14 @@ class API:
         username = session['username']
         success, error = self.mongo.leave_event(username, event_id)
         return jsonify({'success': success, 'error': error})
+
+    def stats_leaderboard(self):
+        data = self.points.get_point_leaderboard()
+        return jsonify(data)
+
+    def stats_rank_cutoffs(self):
+        data = self.points.get_rank_cutoffs()
+        return jsonify(data)
 
     def start_server(self):
         self.app.run(host='0.0.0.0', port=8999, debug=False, threaded=True)

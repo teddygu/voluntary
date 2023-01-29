@@ -1,6 +1,8 @@
 from pymongo import MongoClient
 from passlib.hash import argon2
 from haversine import haversine
+import hashlib
+import random
 import time
 
 class Mongo:
@@ -8,6 +10,13 @@ class Mongo:
         mongo_url = 'mongodb+srv://minnehack2023:<password>@cluster0.jacnljd.mongodb.net/?retryWrites=true&w=majority'
         client = MongoClient(mongo_url)
         self.db = client.minnehack2023
+
+    def get_db(self):
+        return self.db
+
+    def generate_id(self):
+        hash = hashlib.md5(str(random.random() + time.time()).encode('utf-8')).hexdigest()
+        return hash
 
     def get_user_data(self, username):
         return self.db.users.find_one({'_id': username})
@@ -74,7 +83,11 @@ class Mongo:
         return self.db.organizations.find_one({'_id': organization_id})
 
     def create_organization(self, name, description):
-        success = self.db.events.insert_one({
+        id = self.generate_id()
+        while self.get_organization_data(id) is not None:
+            id = self.generate_id()
+        success = self.db.organizations.insert_one({
+            '_id': id,
             'events': [],
             'members': [],
             'organization_details': {
@@ -127,10 +140,27 @@ class Mongo:
         return self.db.events.find_one({'_id': event_id})
 
     def get_events(self, latitude, longitude, radius=10):
-        pass
+        events = self.db.events.find()
+        nearby_events = []
+        for event in events:
+            if haversine((latitude, longitude), (event['latitude'], event['longitude'])) <= radius:
+                nearby_events.append({
+                    'event_id': event['_id'],
+                    'latitude': event['latitude'],
+                    'longitude': event['longitude'],
+                    'organization_id': event['organization_id'],
+                    'event_details': event['event_details'],
+                    'participant_count': len(event['current_participants']),
+                    'points_worth': event['points_worth']
+                })
+        return nearby_events
 
     def create_event(self, latitude, longitude, organization_id, name, description, category, start_time_ts=None, end_time_ts=None):
-        success = self.db.events.insert_one({
+        id = self.generate_id()
+        while self.get_event_data(id) is not None:
+            id = self.generate_id()
+        event_success = self.db.events.insert_one({
+            '_id': id,
             'latitude': latitude,
             'longitude': longitude,
             'organization_id': organization_id,
@@ -141,9 +171,11 @@ class Mongo:
                 'start_time_ts': start_time_ts,
                 'end_time_ts': end_time_ts
             },
-            'current_participants': []
+            'current_participants': [],
+            'points_worth': 0
         })
-        if success:
+        organization_success = self.db.organizations.update({'_id': organization_id}, {'$push': {'events': id}})
+        if event_success and organization_success:
             return True, None
         return False, 'An unknown error occurred, try again later'
 
@@ -172,9 +204,14 @@ class Mongo:
         if user_data is None or event_data is None:
             return False, 'User or event not found'
         if user_data['event_data']['current_event_data'].get('event_id') == event_id:
-            user_success = self.db.users.update({'_id': username}, {'$set': {'event_data.current_event_data': {}}})
+            user_success_1 = self.db.users.update({'_id': username}, {'$set': {'event_data.current_event_data': {}}})
+            user_success_2 = self.db.users.update({'_id': username}, {'$push': {'event_data.past_event_data': {
+                'event_id': event_id,
+                'start_ts': user_data['event_data']['current_event_data']['start_ts'],
+                'end_ts': int(time.time())
+            }}})
             event_success = self.db.events.update({'_id': event_id}, {'$pull': {'current_participants': username}})
-            if user_success and event_success:
+            if user_success_1 and user_success_2 and event_success:
                 return True, None
         else:
             return False, 'You are not in any event'
@@ -184,4 +221,8 @@ class Mongo:
         event_data = self.get_event_data(event_id)
         if event_data is None:
             return False, 'Event not found'
-        success = self.db.events.remove({'_id': event_id})
+        event_success = self.db.events.remove({'_id': event_id})
+        organization_success = self.db.organizations.update({'_id': event_data['organization_id']}, {'$pull': {'events': event_id}})
+        if event_success and organization_success:
+            return True, None
+        return False, 'An unknown error occurred, try again later'
