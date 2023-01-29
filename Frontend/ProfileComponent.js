@@ -7,6 +7,9 @@ const ProfileComponent = () => {
   //read in stuff
     const [expanded, setExpanded] = React.useState(true);
     const handlePress = () => setExpanded(!expanded);
+
+    const arr1 = [1,2,3];
+    const arr2 = [4,5,6];
     return (
         <PaperProvider>
           <View style={styles.container}>
@@ -25,17 +28,23 @@ const ProfileComponent = () => {
             </View>
             <View style={{flex: 1, flexDirection: 'row', bottom: 100}}>
                 <View style={{flex:1, alignItems:'center'}}>
-                    <Text style={{fontSize: 20}}>Past Rewards</Text>
+                    <Text style={{fontSize: 20}}>Past Activities</Text>
                     <List.Accordion style={{width: 185}}>
-                        <List.Item title="First item" />
-                        <List.Item title="Second item" />
+                        { 
+                            arr1.map((item) => (
+                                <List.Item title={item} />
+                            ))
+                        }
                     </List.Accordion>
                 </View>
                 <View style={{flex:1, alignItems:'center'}}>
                     <Text style={{fontSize: 20}}>Past Rewards</Text>
                     <List.Accordion style={{width: 185}}>
-                        <List.Item title="First item" />
-                        <List.Item title="Second item" />
+                        { 
+                            arr2.map((item) => (
+                                <List.Item title={item} />
+                            ))
+                        }
                     </List.Accordion> 
                 </View>
             </View>
