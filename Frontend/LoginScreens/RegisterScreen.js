@@ -16,13 +16,23 @@ export default function RegisterScreen({ navigation }) {
   }
 
   return (
-    <View>
-      <Appbar.Header>
+    <View style={styles.container}>
+        <View>
+        <Appbar.Header style={styles.header}>
             <Appbar.BackAction onPress={() => {navigation.goBack()}} />
         </Appbar.Header>
-      <Avatar.Image size={400} source={require('../LoginAssets/logo.png')}/>
-      <Text>Create Account</Text>
-      <TextInput
+        </View>
+     
+        <View style={styles.avatar}>
+            <Avatar.Image size={250} source={require('../LoginAssets/logo.png')}/>
+        </View>
+      
+      <View>
+            <Text style={styles.welcomeBack}>Create Account</Text>
+        </View>
+      
+      <View>
+            <TextInput
         label="Name"
         returnKeyType="next"
         value={name.value}
@@ -30,7 +40,10 @@ export default function RegisterScreen({ navigation }) {
         error={!!name.error}
         errorText={name.error}
       />
-      <TextInput
+        </View>
+      
+      <View>
+             <TextInput
         label="Email"
         returnKeyType="next"
         value={email.value}
@@ -42,7 +55,10 @@ export default function RegisterScreen({ navigation }) {
         textContentType="emailAddress"
         keyboardType="email-address"
       />
-      <TextInput
+        </View>
+     
+      <View style={styles.view}>
+            <TextInput
         label="Password"
         returnKeyType="done"
         value={password.value}
@@ -51,19 +67,66 @@ export default function RegisterScreen({ navigation }) {
         errorText={password.error}
         secureTextEntry
       />
-      <Button
+        </View>
+      
+      <View>
+             <Button
         mode="contained"
-        onPress={onSignUpPressed}
-      >
+        onPress={onSignUpPressed}>
         Sign Up
       </Button>
+        </View>
+     
       <View >
-        <Text>Already have an account? </Text>
+        <Text style={styles.description}>Already have an account? </Text>
         <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
-          <Text >Login</Text>
+          <Text style={styles.title}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        height: '100%',
+        width: '100%',
+        backgroundColor:'black'
+    },
+    header:{
+        color:'white',
+        fontColor:'white',
+        backgroundColor:'black'
+    },
+    view: {
+        height:'9%'
+    },
+    welcomeBack:{
+        fontWeight: 'bold',
+        display: 'flex',
+        fontSize: '25',
+        color: 'white'
+    },
+    avatar:{
+        alignItems:"center",
+    },
+    backButton: {
+        fontSize:"5"
+    },
+     title: {
+        fontWeight: 'bold',
+        display: 'flex',
+        fontSize: '16',
+        color: 'white'
+    },
+    description: {
+        fontSize:'14',
+        color: 'white'
+    },
+    button: {
+        borderWidth:'1',
+        fontSize:'30'
+    }
+    
+    });
 
