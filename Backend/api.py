@@ -23,6 +23,8 @@ class API:
         self.app.route('/api/v1/user/create_account', methods=['POST'])(self.user_create_account)
         self.app.route('/api/v1/user/login', methods=['POST'])(self.user_login)
 
+        self.app.route('/api/v1/user/login_dummy', methods=['POST'])(self.user_login_dummy)
+
         self.app.route('/api/v1/user/get_data', methods=['GET'])(self.user_get_data)
         self.app.route('/api/v1/user/add_friend', methods=['POST'])(self.user_add_friend)
         self.app.route('/api/v1/user/remove_friend', methods=['POST'])(self.user_remove_friend)
@@ -47,6 +49,8 @@ class API:
         username = request.json.get('username')
         password = request.json.get('password')
         success, error = self.mongo.create_account(username, password)
+        if success:
+            session['username'] = username
         return jsonify({'success': success, 'error': error})
 
     def user_login(self):
@@ -56,6 +60,10 @@ class API:
         if success:
             session['username'] = username
         return jsonify({'success': success, 'error': error})
+
+    def user_login_dummy(self):
+        session['username'] = 'User2'
+        return jsonify({'success': True, 'error': ''})
 
     def user_get_data(self):
         if 'username' not in session:
