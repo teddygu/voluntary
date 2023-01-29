@@ -15,6 +15,8 @@ class ProfileComponent extends React.Component {
       events: [],
       activityLength: 0,
       points: 0,
+      userData: {},
+      initials: ''
     }
   }
 
@@ -39,6 +41,8 @@ class ProfileComponent extends React.Component {
         this.setState({ events: data.event_data.event_history });
         this.setState({ activityLength: data.event_data.event_history.length });
         this.setState({ points: data.points });
+        this.setState({ userData: data.user_data });
+        this.setState({ initials: data.user_data.first_name[0] + data.user_data.last_name[0] });
       });
     });
   }
@@ -50,7 +54,13 @@ class ProfileComponent extends React.Component {
       <PaperProvider>
         <View style={styles.container}>
           <View>
-              <Avatar.Text size={150} backgroundColor='lavender' label="XD"/>
+            <Text></Text>
+            <Text style={{fontSize: 25, fontWeight: 'bold', textAlign: 'center'}}>{this.state.userData.first_name} {this.state.userData.last_name}</Text>
+            <Text style={{fontSize: 15, fontWeight: 'bold', textAlign: 'center'}}>{localStorage.username}</Text>
+            <Text></Text>
+          </View>
+          <View>
+              <Avatar.Text size={150} backgroundColor='lavender' label={this.state.initials}/>
           </View>
           <View style={{flex: 1, flexDirection: 'row', top: 40}}>
             <View style={{flex:1, alignItems:'center'}}>
@@ -65,8 +75,8 @@ class ProfileComponent extends React.Component {
           <View style={{flex: 1, flexDirection: 'row', bottom: 100}}>
               <View style={{flex:1, alignItems:'center'}}>
                   <Text style={{fontSize: 20}}>Past Activities</Text>
-                  <List.Accordion style={{width: 185}}>
-                      { 
+                  <List.Accordion style={{width: 185}} expanded>
+                      {
                           this.state.events.map((item) => (
                               <List.Item description={item.name} key={item.event_id}/>
                           ))
@@ -75,7 +85,7 @@ class ProfileComponent extends React.Component {
               </View>
               <View style={{flex:1, alignItems:'center'}}>
                   <Text style={{fontSize: 20}}>Past Rewards</Text>
-                  <List.Accordion style={{width: 185}}>
+                  <List.Accordion style={{width: 185}} expanded>
                       { 
                           arr2.map((item) => (
                               <List.Item description={item} key={item}/>
