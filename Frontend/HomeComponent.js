@@ -97,7 +97,7 @@ class HomeComponent extends React.Component {
       diff = 0;
     }
     else{
-      msg = diff + " points until the next rank! Go for it!";
+      msg = diff + " points until the next rank!";
     }
 
    
@@ -112,11 +112,11 @@ class HomeComponent extends React.Component {
             <View>
               <Text style={{fontFamily: 'Verdana-Bold', fontWeight: 'bold', fontSize: 30, right: 0}}>Welcome back {this.state.name}!</Text>
             </View>
-            <View style={{top: 20, left: 70}}>
+            <View style={{top: 20, left: 50}}>
                 {path}
             </View>
             <View>
-              <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 110, top: 30}}>Current Rank: {rank}</Text>
+              <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 70, top: 30}}>Current Rank: {rank}</Text>
             </View>
             <View style={styles.progressBar}>
               <View style={{top:0, height: 16, flexDirection: "row", width: 250 - diff, backgroundColor: 'lavender'}}/>
@@ -124,13 +124,10 @@ class HomeComponent extends React.Component {
             <View>
               <Text style={{fontFamily: 'Verdana',fontSize: 15, left: 45, top: 50}}>{msg}</Text>
             </View>
-            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 60}}>Top Events In Your Area</Text>
-            <Text Text style={{fontFamily: 'Verdana',top: 65, left: 50}}>(organization name + past participants)</Text>
-            <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60}}>Top Events In Your Area</Text>
-            <Text Text style={{top: 65, left: 50}}>(organization name + current participants)</Text>
+            <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 50, fontSize: 20, left: 0}}>Top Events In Your Area</Text>
           </View>
           <StatusBar style="auto" />
-          <View style={{flex: 1, flexDirection: 'row', top: 65}}>
+          <View style={{flex: 1, flexDirection: 'row', top: 75}}>
             <View style={{flex:1, alignItems:'center'}}>
                 <View style={{width: 425}}>
                     { 
@@ -169,7 +166,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 5,
     top: 45,
-    left: 55
+    left: 35
   }
 });
 

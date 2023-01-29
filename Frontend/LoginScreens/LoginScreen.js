@@ -3,8 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { TouchableOpacity, StyleSheet, View } from 'react-native'
 import { Text, TextInput, Avatar, Appbar, Button } from 'react-native-paper'
-import HomeRoute from '../BottomNav';
-import App from '../App'
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
