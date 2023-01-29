@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, StackNavigator, Text } from 'react-native';
-import { Provider as PaperProvider, Button, List, Banner, Appbar } from 'react-native-paper';
+import { Provider as PaperProvider, Button, List, Banner, Appbar, Avatar } from 'react-native-paper';
 import Platinum from './Plat.js';
 import Gold from './Gold.js';
 import Silver from './Silver.js';
@@ -14,6 +14,7 @@ class HomeComponent extends React.Component {
     super(props);
     this.state = {
       name: "",
+      initials: "",
       points: 0,
       activities: []
     }
@@ -38,6 +39,7 @@ class HomeComponent extends React.Component {
         credentials: 'include'
       }).then(response => response.json()).then(data => {
         this.setState({ name: data.user_data.first_name });
+        this.setState({ initials: data.user_data.first_name[0] +  data.user_data.last_name[0]});
         this.setState({ points: data.points });
       });
     });
@@ -67,30 +69,35 @@ class HomeComponent extends React.Component {
     var right = 90
     // fName = data.user_data.first_name;
     // points = data.points;
-    var diff = 250 - points % 250;
+    var diff;
     var msg;
-    if(points >= 750){
-      msg = "Congratulations, you are the highest rank!"
-    }
-    else{
-      msg = "You are " + diff + " points away from you next rank.";
-    }
 
     if(points < 250){
       path = <Bronze/>;
       rank = 'Bronze';
+      diff = 250 - points;
     }
     else if(points < 500){
       path = <Silver/>;
       rank = 'Silver';
+      diff = 500 - points;
     }
     else if(points < 750){
       path = <Gold/>;
       rank = 'Gold';
+      diff = 750 - points;
     }
     else{
       path = <Platinum/>
       rank = 'Platinum';
+    }
+
+    if(points >= 750){
+      msg = "Congratulations, you are the highest rank!"
+      diff = 0;
+    }
+    else{
+      msg = "You are " + diff + " points away from you next rank.";
     }
 
    
@@ -98,7 +105,10 @@ class HomeComponent extends React.Component {
     return (
       <PaperProvider>
         <View style={styles.container}>
-          <View style={{flex: 1, flexDirection: 'column', top: 40}}>
+          <View style={{bottom: 20, left: 100}}>
+            <Avatar.Text size={45} backgroundColor='lavender' label={this.state.initials}/>
+          </View>
+          <View style={{flex: 1, flexDirection: 'column', top: 0}}>
             <View>
               <Text style={{fontFamily: 'Verdana-Bold', fontWeight: 'bold', fontSize: 30, right: 0, fontStyle: 'italic'}}>Welcome back {this.state.name}!</Text>
             </View>
@@ -116,9 +126,11 @@ class HomeComponent extends React.Component {
             </View>
             <Text Text style={{fontFamily: 'Verdana', fontWeight: 'bold', top: 70, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
             <Text Text style={{fontFamily: 'Verdana',top: 65, left: 50}}>(organization name + past participants)</Text>
+            <Text Text style={{fontWeight: 'bold', top: 70, fontSize: 20, left: 60, fontStyle: 'italic'}}>Top Events In Your Area</Text>
+            <Text Text style={{top: 65, left: 50}}>(organization name + current participants)</Text>
           </View>
           <StatusBar style="auto" />
-          <View style={{flex: 1, flexDirection: 'row', top: 95}}>
+          <View style={{flex: 1, flexDirection: 'row', top: 65}}>
             <View style={{flex:1, alignItems:'center'}}>
                 <View style={{width: 425}}>
                     { 
