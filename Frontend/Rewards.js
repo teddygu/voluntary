@@ -36,9 +36,10 @@ const Rewards = () => (
                 <Card.Cover source={{ uri: 'https://www.therabody.com/dw/image/v2/BCWX_PRD/on/demandware.static/-/Sites-thg-master/default/dwd8c45c39/images/PDP/grid/PRO_BLACK_GRID_4.jpg?sw=720' }} />
                 <Card.Content>
                 <Text variant="titleLarge">Therabody</Text>
-                <Text variant="bodyMedium">%20 off any purchase</Text>
+                <Text variant="bodyMedium">20% off any purchase</Text>
                 </Card.Content>
             </Card>
+            <View style={{height: 115}}></View>
         </ScrollView>
         
             
