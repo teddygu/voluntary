@@ -144,6 +144,20 @@ class Mongo:
     def get_event_data(self, event_id):
         return self.db.events.find_one({'_id': event_id})
 
+    def get_event_info(self, event_id):
+        event_data = self.get_event_data(event_id)
+        if event_data is None:
+            return {}
+        return {
+            'event_id': event_data['_id'],
+            'latitude': event_data['latitude'],
+            'longitude': event_data['longitude'],
+            'organization_id': event_data['organization_id'],
+            'event_details': event_data['event_details'],
+            'participant_count': len(event_data['current_participants']),
+            'points_worth': event_data['points_worth']
+        }
+
     def get_events(self, latitude, longitude, radius=10):
         events = self.db.events.find()
         nearby_events = []
