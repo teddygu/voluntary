@@ -7,7 +7,7 @@ import time
 
 class Mongo:
     def __init__(self):
-        mongo_url = 'mongodb+srv://minnehack2023:67yNmCtAUaes8uKx@cluster0.jacnljd.mongodb.net/?retryWrites=true&w=majority'
+        mongo_url = 'Put your database access link here'
         client = MongoClient(mongo_url)
         self.db = client.minnehack2023
 
