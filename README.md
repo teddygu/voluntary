@@ -23,3 +23,10 @@ Clone the project, change to the `Frontend` directory, and run `npm install` and
 ## Installation (Server)
 
 This server was tested on Python 3.10. To install dependencies, run `python -m pip install -r requirements.txt` in the `Backend` directory. To start the webserver, run `python run.py`. The default host is 127.0.0.1 (localhost) and the default port is 8999.
+
+## Screenshots
+![HomeScreen](/Screenshots/home.png)
+![MapScreen](/Screenshots/map.png)
+![RewardsScreen](/Screenshots/rewards.png)
+![SocialScreen](/Screenshots/social.png)
+![ProfileScreen](/Screenshots/profile.png)
